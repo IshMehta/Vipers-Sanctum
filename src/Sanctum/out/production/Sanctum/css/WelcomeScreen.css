@@ -1,0 +1,15 @@
+
+.statusText {
+    -fx-font: 45px "Luminari";
+    -fx-padding: 20;
+}
+
+.buttons {
+    -fx-font: 30px "monospace";
+    -fx-spacing: 50;
+    -fx-alignment: center;
+
+}
+.vbox{
+    -fx-background-color: #222;
+}
