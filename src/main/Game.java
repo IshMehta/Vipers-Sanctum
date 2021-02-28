@@ -122,7 +122,7 @@ public class Game extends Application {
         primaryStage.show();
     }
 
-    public Stage showConfigScreen(Stage primaryStage) {
+    public Scene showConfigScreen() {
         //Primary Border Pane that will be set to the scene
         BorderPane borderPane = new BorderPane();
         BackgroundFill backgroundFill = new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY);
@@ -234,9 +234,7 @@ public class Game extends Application {
         borderPane.setBottom(footer);
         //Sets the Scene and displays stage
         Scene scene = new Scene(borderPane, 1000, 500);
-        primaryStage.setTitle("Config Screen");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        return scene;
     }
 
     public static void main(String[] args) {
