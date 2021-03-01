@@ -1,3 +1,4 @@
+import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +9,30 @@ import org.junit.jupiter.api.Test;
  * @version 1.0
  */
 public class GameTest {
-	@BeforeEach
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Controller controller = new Controller();
+        controller.start(primaryStage);
+    }
+    // Diptendu Maity JUnit Test
+    @Test
+    public void playerNameBlankCheck() {
+        clickOn("Play");
+        write("  ");
+        clickOn("Submit Name");
+        clickOn("OK");
+    }
+    // Diptendu Maity JUnit Test
+    @Test
+    public void selectDifficultyCheck() {
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Medium");
+        clickOn("Hard");
+    }
+
+    @BeforeEach
 	public void setup() {
 	    //
 	}
