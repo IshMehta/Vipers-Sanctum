@@ -78,5 +78,22 @@ public class ControllerTest extends ApplicationTest {
         FxAssert.verifyThat(".label", LabeledMatchers.hasText("Money: 5"));
     }
 
+    // Diptendu Test
+    @Test
+    public void playerNameBlankCheck() {
+        clickOn("Play");
+        write("  ");
+        clickOn("Submit Name");
+        clickOn("OK");
+    }
+
+    @Test
+    public void selectDifficultyCheck() {
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Medium");
+        clickOn("Hard");
+    }
+
 
 }
