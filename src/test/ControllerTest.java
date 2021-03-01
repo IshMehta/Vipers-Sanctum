@@ -60,6 +60,26 @@ public class ControllerTest extends ApplicationTest {
         FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Maul"));
     }
 
+    @Test
+    public void testExitButtons() {
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Maul");
+        clickOn("Next");
+        clickOn("Up");
+        clickOn("Down");
+        clickOn("R");
+        clickOn("L");
+    }
+
+    @Test
+    public void testValidNameEntered() {
+        clickOn("Play");
+        write("Rahul");
+        clickOn("Submit Name");
+        FxAssert.verifyThat("#validity", LabeledMatchers.hasText("Valid name has been entered!"));
+    }
+
     //Asha Test
     @Test
     public void testWelcomeScreenandQuit() {
