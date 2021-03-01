@@ -82,6 +82,7 @@ public class ConfigurationScreen {
                     invalidName.show();
                 } else {
                     Label validName = new Label("Valid name has been entered!");
+                    validName.setId("validity");
                     validName.setTextFill(Color.BLACK);
                     Font validFont = new Font("Times New Roman", 15);
                     validName.setFont(validFont);
