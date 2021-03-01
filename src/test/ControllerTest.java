@@ -95,5 +95,18 @@ public class ControllerTest extends ApplicationTest {
         clickOn("Hard");
     }
 
+    @Test
+    public void configurationCheck() {
+        clickOn("Play");
+        clickOn("Knife");
+        clickOn("Medium");
+        clickOn("Sword");
+        clickOn("Easy");
+        clickOn("Bow");
+        clickOn("Next");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 10"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Bow"));
+    }
+
 
 }
