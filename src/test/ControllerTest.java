@@ -14,6 +14,7 @@ import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
 import org.testfx.matcher.control.LabeledMatchers;
+import view.ConfigurationScreen;
 import view.GameScreen;
 import static org.testfx.api.FxToolkit.registerPrimaryStage;
 import static org.testfx.api.FxToolkit.setupApplication;
@@ -78,5 +79,34 @@ public class ControllerTest extends ApplicationTest {
         FxAssert.verifyThat(".label", LabeledMatchers.hasText("Money: 5"));
     }
 
+    //Ish Test
+    @Test
+    public void testConfig1() {
+        clickOn("Play");
+        write("Ish");
+        clickOn("Submit Name");
+        clickOn("Knife");
+        clickOn("Medium");
+        clickOn("Sword");
+        clickOn("Easy");
+        clickOn("Bow");
+        clickOn("Sword");
+        clickOn("Next");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 10"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Sword"));
+    }
+
+    @Test
+    public void testConfig2() {
+        clickOn("Play");
+        write("Ish");
+        clickOn("Submit Name");
+        clickOn("Knife");
+        clickOn("Medium");
+        clickOn("Maul");
+        clickOn("Next");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 8"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Maul"));
+    }
 
 }
