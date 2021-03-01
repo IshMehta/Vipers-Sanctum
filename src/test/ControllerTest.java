@@ -80,6 +80,23 @@ public class ControllerTest extends ApplicationTest {
         FxAssert.verifyThat("#validity", LabeledMatchers.hasText("Valid name has been entered!"));
     }
 
+    @Test
+    public void testNullWeapon() {
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Next");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 10"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: null"));
+    }
+
+    @Test
+    public void testNoLevelSelected() {
+        clickOn("Play");
+        clickOn("Maul");
+        clickOn("Next");
+        FxAssert.verifyThat(".label", LabeledMatchers.hasText("Configuration Screen"));
+    }
+
     //Asha Test
     @Test
     public void testWelcomeScreenandQuit() {
