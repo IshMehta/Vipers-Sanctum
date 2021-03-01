@@ -42,6 +42,24 @@ public class ControllerTest extends ApplicationTest {
         controller.start(primaryStage);
     }
 
+    //Asha Test
+    @Test
+    public void testWelcomeScreenandQuit() {
+        FxAssert.verifyThat(".label", LabeledMatchers.hasText("The Viper's Sanctum!"));
+        FxAssert.verifyThat(".button", LabeledMatchers.hasText("Play"));
+        clickOn("Quit");
+    }
+
+    @Test
+    public void testNavigation() {
+        clickOn("Play");
+        FxAssert.verifyThat(".label", LabeledMatchers.hasText("Configuration Screen"));
+        clickOn("Hard");
+        clickOn("Maul");
+        clickOn("Next");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 5"));
+    }
+
     //Rahul Test
     @Test
     public void testTransferData() {
@@ -51,12 +69,12 @@ public class ControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void testInitializationGame() {
+    public void testHardLevelSelected() {
         clickOn("Play");
-        clickOn("Easy");
+        clickOn("Hard");
         clickOn("Maul");
         clickOn("Next");
-        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 10"));
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 5"));
         FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Maul"));
     }
 
@@ -90,29 +108,13 @@ public class ControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void testNoLevelSelected() {
+    public void testEasyLevelSelected() {
         clickOn("Play");
+        clickOn("Easy");
         clickOn("Maul");
         clickOn("Next");
-        FxAssert.verifyThat(".label", LabeledMatchers.hasText("Configuration Screen"));
-    }
-
-    //Asha Test
-    @Test
-    public void testWelcomeScreenandQuit() {
-        FxAssert.verifyThat(".label", LabeledMatchers.hasText("The Viper's Sanctum!"));
-        FxAssert.verifyThat(".button", LabeledMatchers.hasText("Play"));
-        clickOn("Quit");
-    }
-
-    @Test
-    public void testNavigation() {
-        clickOn("Play");
-        FxAssert.verifyThat(".label", LabeledMatchers.hasText("Configuration Screen"));
-        clickOn("Hard");
-        clickOn("Maul");
-        clickOn("Next");
-        FxAssert.verifyThat(".label", LabeledMatchers.hasText("Money: 5"));
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 10"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Maul"));
     }
 
     // Diptendu Test
