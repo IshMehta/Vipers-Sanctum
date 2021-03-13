@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import view.ConfigurationScreen;
 import view.GameScreen;
 import view.WelcomeScreen;
+import view.WinScreen;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -89,6 +90,13 @@ public class Controller extends Application {
         mainWindow.show();
     }
 
+    private void goToWinScreen() {
+        WinScreen winner = new WinScreen();
+        Scene scene = winner.getScene();
+        mainWindow.setScene(scene);
+        mainWindow.show();
+    }
+
     private void randomizeRooms() {
         roomsArray[0][2] = 1;
         int currentX = 0;
@@ -153,6 +161,10 @@ public class Controller extends Application {
                 }
                 break;
             case "Right":
+                if (roomsArray[currentRoomX][currentRoomY] == 9) {
+                    goToWinScreen();
+                    return;
+                }
                 if (currentRoomX == 4) {
                     Alert invalidRoom = new Alert(Alert.AlertType.WARNING);
                     invalidRoom.setContentText("You are at the edge of the dungeon and cannot travel this way");
