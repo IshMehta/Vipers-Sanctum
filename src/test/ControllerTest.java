@@ -1,26 +1,18 @@
-package test;
-
 import controller.Controller;
-import javafx.application.Application;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxAssert;
-import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
-import org.testfx.matcher.base.NodeMatchers;
 import org.testfx.matcher.control.LabeledMatchers;
-import view.ConfigurationScreen;
 import view.GameScreen;
 import static org.testfx.api.FxToolkit.registerPrimaryStage;
 import static org.testfx.api.FxToolkit.setupApplication;
 
 /**
- * Basic set of unit tests for the game.
+ * Set of unit tests to test M2 implementations.
  *
  * @author Vipers
  * @version 1.0
