@@ -1,5 +1,6 @@
 package view;
 
+import javafx.scene.shape.Rectangle;
 import controller.Controller;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -114,10 +115,29 @@ public class GameScreen {
                         false));
         MainView.setBackground(new Background(dungeonBackground));
         MainView.getChildren().addAll(moneyStatus, weaponStatus, currentRoom);
-        upSide.getChildren().add(buttonUp);
-        downSide.getChildren().add(buttonDown);
-        rightSide.getChildren().add(buttonRight);
-        leftSide.getChildren().add(buttonLeft);
+        if (room != 9) {
+            upSide.getChildren().add(buttonUp);
+            downSide.getChildren().add(buttonDown);
+            rightSide.getChildren().add(buttonRight);
+            leftSide.getChildren().add(buttonLeft);
+        } else {
+            rightSide.getChildren().add(buttonRight);
+            Rectangle fillerUp = new Rectangle();
+            Rectangle fillerDown = new Rectangle();
+            Rectangle fillerLeft = new Rectangle();
+            fillerUp.setWidth(128);
+            fillerUp.setHeight(72);
+            fillerDown.setWidth(128);
+            fillerDown.setHeight(72);
+            fillerLeft.setHeight(128);
+            fillerLeft.setWidth(72);
+            fillerUp.setFill(Color.BLACK);
+            fillerDown.setFill(Color.BLACK);
+            fillerLeft.setFill(Color.BLACK);
+            downSide.getChildren().add(fillerDown);
+            upSide.getChildren().add(fillerUp);
+            leftSide.getChildren().add(fillerLeft);
+        }
         upSide.setAlignment(Pos.CENTER);
         downSide.setAlignment(Pos.CENTER);
         leftSide.setAlignment(Pos.CENTER);
