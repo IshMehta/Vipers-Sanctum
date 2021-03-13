@@ -141,7 +141,7 @@ public class ConfigurationScreen {
         footer.getChildren().addAll(footerHbox, spacingFooter);
         borderPane.setBottom(footer);
         //Sets the Scene and displays stage
-        Scene scene = new Scene(borderPane, 1000, 500);
+        Scene scene = new Scene(borderPane, 1280, 720);
         return scene;
     }
 
