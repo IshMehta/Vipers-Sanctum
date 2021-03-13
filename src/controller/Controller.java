@@ -24,7 +24,7 @@ public class Controller extends Application {
     private int currentRoomY = 2;
     private String difficulty;
     private String weapon;
-    private boolean[] roomsAccessed = new boolean[8];
+    private boolean[] roomsAccessed = new boolean[9];
 
 
     @Override
@@ -131,7 +131,7 @@ public class Controller extends Application {
                     invalidRoom.show();
                 } else {
                     currentRoomY--;
-                     if (roomsArray[currentRoomX][currentRoomY] != 0) {
+                     if (roomsArray[currentRoomX][currentRoomY] != 0 && roomsArray[currentRoomX][currentRoomY] != 1) {
                          roomValidity(direction);
                      }
                     switchRoom();
@@ -146,7 +146,7 @@ public class Controller extends Application {
                     invalidRoom.show();
                 } else {
                     currentRoomY++;
-                    if (roomsArray[currentRoomX][currentRoomY] != 0) {
+                    if (roomsArray[currentRoomX][currentRoomY] != 0 && roomsArray[currentRoomX][currentRoomY] != 1) {
                         roomValidity(direction);
                     }
                     switchRoom();
@@ -161,7 +161,7 @@ public class Controller extends Application {
                     invalidRoom.show();
                 } else {
                     currentRoomX++;
-                    if (roomsArray[currentRoomX][currentRoomY] != 0) {
+                    if (roomsArray[currentRoomX][currentRoomY] != 0 && roomsArray[currentRoomX][currentRoomY] != 1) {
                         roomValidity(direction);
                     }
                     switchRoom();
@@ -176,7 +176,7 @@ public class Controller extends Application {
                     invalidRoom.show();
                 } else {
                     currentRoomX--;
-                    if (roomsArray[currentRoomX][currentRoomY] != 0) {
+                    if (roomsArray[currentRoomX][currentRoomY] != 0 && roomsArray[currentRoomX][currentRoomY] != 1) {
                         roomValidity(direction);
                     }
                     switchRoom();
