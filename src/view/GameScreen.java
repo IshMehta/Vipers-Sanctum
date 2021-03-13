@@ -1,5 +1,6 @@
 package view;
 
+import controller.Controller;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -31,10 +32,16 @@ public class GameScreen {
 //    }
     private final String difficulty;
     private String weapon;
+    private Button buttonUp = new Button("Up");;
+    private Button buttonDown = new Button("Down");;
+    private Button buttonLeft = new Button("L");;
+    private Button buttonRight = new Button("R");;
+    private int room;
 
-    public GameScreen(String selectedDifficulty, String selectedWeapons) {
+    public GameScreen(String selectedDifficulty, String selectedWeapons, int roomIndex) {
         difficulty = selectedDifficulty;
         weapon = selectedWeapons;
+        room = roomIndex;
     }
 
     public Scene getScene() {
@@ -54,10 +61,6 @@ public class GameScreen {
         upSide.setStyle("-fx-background-color: #000000;");
         downSide.setStyle("-fx-background-color: #000000;");
         //Making the buttons and styling
-        Button buttonUp = new Button("Up");
-        Button buttonDown = new Button("Down");
-        Button buttonRight = new Button("R");
-        Button buttonLeft = new Button("L");
         buttonUp.setFont(Font.font("Cambria", 32));
         buttonUp.setPrefWidth(128);
         buttonUp.setPrefHeight(72);
@@ -79,20 +82,25 @@ public class GameScreen {
         } else {
             startingMoney = 5;
         }
+        Label currentRoom = new Label("Room: " + room);
         Label moneyStatus = new Label("Money: " + startingMoney);
         moneyStatus.setId("moneyStatus");
         Label weaponStatus = new Label("Weapon: " + weapon);
         weaponStatus.setId("weaponStatus");
         weaponStatus.setFont(Font.font("Cambria", 32));
         moneyStatus.setFont(Font.font("Cambria", 32));
+        currentRoom.setFont(Font.font("Cambria", 32));
         moneyStatus.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255, 0.7),
                 new CornerRadii(0.0), new Insets(0.0))));
         weaponStatus.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255, 0.7),
+                new CornerRadii(0.0), new Insets(0.0))));
+        currentRoom.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255, 0.7),
                 new CornerRadii(0.0), new Insets(0.0))));
         //middle view in screen (background and money, basically the main screen that the player looks at)
         StackPane MainView = new StackPane();
         MainView.setAlignment(moneyStatus, Pos.TOP_RIGHT);
         MainView.setAlignment(weaponStatus, Pos.TOP_LEFT);
+        MainView.setAlignment(currentRoom, Pos.TOP_CENTER);
         Image background = new Image("file:src/dungeonTest.jpg");
         BackgroundImage dungeonBackground = new BackgroundImage(background,
                 BackgroundRepeat.REPEAT,
@@ -105,7 +113,7 @@ public class GameScreen {
                         true,
                         false));
         MainView.setBackground(new Background(dungeonBackground));
-        MainView.getChildren().addAll(moneyStatus, weaponStatus);
+        MainView.getChildren().addAll(moneyStatus, weaponStatus, currentRoom);
         upSide.getChildren().add(buttonUp);
         downSide.getChildren().add(buttonDown);
         rightSide.getChildren().add(buttonRight);
@@ -133,5 +141,21 @@ public class GameScreen {
 
     public String getWeapon() {
         return weapon;
+    }
+
+    public Button getButtonUp() {
+        return buttonUp;
+    }
+
+    public Button getButtonDown() {
+        return buttonDown;
+    }
+
+    public Button getButtonLeft() {
+        return buttonLeft;
+    }
+
+    public Button getButtonRight() {
+        return buttonRight;
     }
 }
