@@ -238,5 +238,8 @@ public class Controller extends Application {
         return currentRoomY;
     }
 
+    public void setRooms(int roomsNum, int x, int y) {
+        roomsArray[x][y] = roomsNum;
+    }
 }
 
