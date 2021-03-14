@@ -2,7 +2,10 @@ import controller.Controller;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.testfx.api.FxAssert;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.matcher.control.LabeledMatchers;
@@ -16,7 +19,9 @@ import static org.testfx.api.FxToolkit.setupApplication;
  * @author Vipers
  * @version 1.0
  */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ControllerTest2 extends ApplicationTest {
+
     @BeforeAll
     public static void setupSpec() throws Exception {
         registerPrimaryStage();
@@ -32,11 +37,28 @@ public class ControllerTest2 extends ApplicationTest {
         Controller controller = new Controller();
         controller.start(primaryStage);
     }
-    //Asha test carryover to make sure file is set up correctly (can delete later)
+    //Rahul Test
     @Test
-    public void testWelcomeScreenandQuit() {
-        FxAssert.verifyThat(".label", LabeledMatchers.hasText("The Viper's Sanctum!"));
-        FxAssert.verifyThat(".button", LabeledMatchers.hasText("Play"));
-        clickOn("Quit");
+    @Order(1)
+    public void testEdgeBoundsInitialize() {
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Maul");
+        clickOn("Next");
+        clickOn("L");
+        clickOn("OK");
+    }
+    @Test
+    @Order(2)
+    public void testRoom1Exits() {
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Maul");
+        clickOn("Next");
+        clickOn("R");
+        clickOn("Down");
+        clickOn("Up");
+        clickOn("L");
+        clickOn("OK");
     }
 }
