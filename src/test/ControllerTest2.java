@@ -121,6 +121,7 @@ public class ControllerTest2 extends ApplicationTest {
     }
 
     @Test
+    @Order(4)
     public void testAccessRoomOutOfOrder() {
         clickOn("Play");
         clickOn("Medium");
@@ -134,6 +135,32 @@ public class ControllerTest2 extends ApplicationTest {
         FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Sword"));
         FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 0"));
         clickOn("R");
+        FxAssert.verifyThat("OK", NodeMatchers.isVisible());
+    }
+
+    //Diptendu Test
+    @Test
+    @Order(5)
+    public void checkUpperBound() {
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Sword");
+        clickOn("Next");
+        clickOn("Up");
+        clickOn("Up");
+        clickOn("Up");
+        FxAssert.verifyThat("OK", NodeMatchers.isVisible());
+    }
+    @Test
+    @Order(6)
+    public void checkLowerBound() {
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Sword");
+        clickOn("Next");
+        clickOn("Down");
+        clickOn("Down");
+        clickOn("Down");
         FxAssert.verifyThat("OK", NodeMatchers.isVisible());
     }
 }
