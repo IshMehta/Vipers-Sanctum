@@ -36,6 +36,16 @@ public class ControllerTest2 extends ApplicationTest {
     public void start(Stage primaryStage) throws Exception {
         Controller controller = new Controller();
         controller.start(primaryStage);
+        controller.clearRooms();
+        controller.setRooms(1, 0, 2);
+        controller.setRooms(2, 1, 2);
+        controller.setRooms(3, 1, 3);
+        controller.setRooms(4, 2, 3);
+        controller.setRooms(5, 2, 4);
+        controller.setRooms(6, 3, 4);
+        controller.setRooms(7, 3, 3);
+        controller.setRooms(8, 4, 3);
+        controller.setRooms(9, 4, 2);
     }
     //Rahul Test
     @Test
@@ -56,8 +66,11 @@ public class ControllerTest2 extends ApplicationTest {
         clickOn("Maul");
         clickOn("Next");
         clickOn("R");
+        clickOn("L");
         clickOn("Down");
         clickOn("Up");
+        clickOn("Up");
+        clickOn("Down");
         clickOn("L");
         clickOn("OK");
     }

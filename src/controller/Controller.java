@@ -241,5 +241,10 @@ public class Controller extends Application {
     public void setRooms(int roomsNum, int x, int y) {
         roomsArray[x][y] = roomsNum;
     }
+
+    public void clearRooms() {
+        int[][] tempArray = new int[5][5];
+        roomsArray = tempArray;
+    }
 }
 
