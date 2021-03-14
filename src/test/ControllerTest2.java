@@ -166,4 +166,50 @@ public class ControllerTest2 extends ApplicationTest {
         FxAssert.verifyThat("OK", NodeMatchers.isVisible());
         clickOn("OK");
     }
+    
+    //Asha Tests
+    @Test
+    public void checkSingleErrorSuccessfulTraversal() {
+        clickOn("Play");
+        clickOn("Hard");
+        clickOn("Maul");
+        clickOn("Next");
+        clickOn("R");
+        clickOn("Down");
+        clickOn("R");
+        clickOn("Down");
+        clickOn("R");
+        clickOn("Up");
+        clickOn("Up");
+        clickOn("Up");
+        clickOn("Up");
+        clickOn("Up");
+        clickOn("OK");
+        clickOn("Down");
+        clickOn("Down");
+        clickOn("Down");
+        clickOn("R");
+        clickOn("Up");
+        clickOn("R");
+
+    }
+
+    @Test
+    public void checkWinScreen() {
+        clickOn("Play");
+        clickOn("Hard");
+        clickOn("Maul");
+        clickOn("Next");
+        clickOn("R");
+        clickOn("Down");
+        clickOn("R");
+        clickOn("Down");
+        clickOn("R");
+        clickOn("Up");
+        clickOn("R");
+        clickOn("Up");
+        clickOn("R");
+        FxAssert.verifyThat(".label", LabeledMatchers.hasText("You Won!"));
+
+    }
 }
