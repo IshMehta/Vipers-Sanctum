@@ -169,6 +169,7 @@ public class ControllerTest2 extends ApplicationTest {
     
     //Asha Tests
     @Test
+    @Order(7)
     public void checkSingleErrorSuccessfulTraversal() {
         clickOn("Play");
         clickOn("Hard");
@@ -195,6 +196,7 @@ public class ControllerTest2 extends ApplicationTest {
     }
 
     @Test
+    @Order(8)
     public void checkWinScreen() {
         clickOn("Play");
         clickOn("Hard");
