@@ -1,15 +1,20 @@
-import controller.Controller;
+
 import controller.ControllerT;
 import javafx.stage.Stage;
-import org.junit.jupiter.api.*;
+
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.MethodOrderer;
+
+import org.junit.jupiter.api.TestMethodOrder;
 import org.testfx.api.FxAssert;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
 import org.testfx.matcher.control.LabeledMatchers;
 
-import javax.naming.ldap.Control;
-
-import java.util.Arrays;
 
 import static org.testfx.api.FxToolkit.registerPrimaryStage;
 import static org.testfx.api.FxToolkit.setupApplication;
@@ -23,7 +28,7 @@ import static org.testfx.api.FxToolkit.setupApplication;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ControllerTest2 extends ApplicationTest {
 
-    public int[][]roomsArray;
+
 
     @BeforeAll
     public static void setupSpec() throws Exception {

@@ -1,7 +1,6 @@
 package view;
 
 import javafx.scene.shape.Rectangle;
-import controller.Controller;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -23,20 +22,12 @@ import javafx.scene.text.Font;
 
 public class GameScreen {
 
-//    private int width;
-//    private int height;
-//
-//    private GameScreen() {}
-//    public GameScreen(int width, int height) {
-//        this.width = width;
-//        this.height = height;
-//    }
     private final String difficulty;
     private String weapon;
-    private Button buttonUp = new Button("Up");;
-    private Button buttonDown = new Button("Down");;
-    private Button buttonLeft = new Button("L");;
-    private Button buttonRight = new Button("R");;
+    private Button buttonUp = new Button("Up");
+    private Button buttonDown = new Button("Down");
+    private Button buttonLeft = new Button("L");
+    private Button buttonRight = new Button("R");
     private int room;
 
     public GameScreen(String selectedDifficulty, String selectedWeapons, int roomIndex) {
@@ -48,7 +39,7 @@ public class GameScreen {
     public Scene getScene() {
 
         BorderPane roomL = new BorderPane();
-        Scene RoomScene = new Scene(roomL, 1280, 720);
+        Scene roomScene = new Scene(roomL, 1280, 720);
 
 
         //Room Scene Set Up
@@ -77,8 +68,7 @@ public class GameScreen {
         int startingMoney = 0;
         if (difficulty.equals("Easy")) {
             startingMoney = 10;
-        }
-        else if (difficulty.equals("Medium")){
+        } else if (difficulty.equals("Medium")) {
             startingMoney = 8;
         } else {
             startingMoney = 5;
@@ -98,11 +88,12 @@ public class GameScreen {
                 new CornerRadii(0.0), new Insets(0.0))));
         currentRoom.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255, 0.7),
                 new CornerRadii(0.0), new Insets(0.0))));
-        //middle view in screen (background and money, basically the main screen that the player looks at)
-        StackPane MainView = new StackPane();
-        MainView.setAlignment(moneyStatus, Pos.TOP_RIGHT);
-        MainView.setAlignment(weaponStatus, Pos.TOP_LEFT);
-        MainView.setAlignment(currentRoom, Pos.TOP_CENTER);
+        //middle view in screen (background and money,
+        // basically the main screen that the player looks at)
+        StackPane mainView = new StackPane();
+        mainView.setAlignment(moneyStatus, Pos.TOP_RIGHT);
+        mainView.setAlignment(weaponStatus, Pos.TOP_LEFT);
+        mainView.setAlignment(currentRoom, Pos.TOP_CENTER);
         Image background = new Image("file:src/dungeonTest.jpg");
         BackgroundImage dungeonBackground = new BackgroundImage(background,
                 BackgroundRepeat.REPEAT,
@@ -114,8 +105,8 @@ public class GameScreen {
                         false,
                         true,
                         false));
-        MainView.setBackground(new Background(dungeonBackground));
-        MainView.getChildren().addAll(moneyStatus, weaponStatus, currentRoom);
+        mainView.setBackground(new Background(dungeonBackground));
+        mainView.getChildren().addAll(moneyStatus, weaponStatus, currentRoom);
         if (room != 9) {
             upSide.getChildren().add(buttonUp);
             downSide.getChildren().add(buttonDown);
@@ -147,10 +138,10 @@ public class GameScreen {
         roomL.setBottom(downSide);
         roomL.setRight(rightSide);
         roomL.setLeft(leftSide);
-        roomL.setCenter(MainView);
+        roomL.setCenter(mainView);
 
 
-        return RoomScene;
+        return roomScene;
 
 
 

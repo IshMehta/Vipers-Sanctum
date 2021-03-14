@@ -12,8 +12,8 @@ public class WelcomeScreen {
     private Button startButton;
     private Button quitButton;
 
-    private WelcomeScreen() {}
-    public WelcomeScreen(int width, int height){
+    private WelcomeScreen() { }
+    public WelcomeScreen(int width, int height) {
         this.width = width;
         this.height = height;
         startButton = new Button("Play");
