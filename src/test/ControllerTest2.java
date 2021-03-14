@@ -136,6 +136,7 @@ public class ControllerTest2 extends ApplicationTest {
         FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 0"));
         clickOn("R");
         FxAssert.verifyThat("OK", NodeMatchers.isVisible());
+        clickOn("OK");
     }
 
     //Diptendu Test
@@ -150,6 +151,7 @@ public class ControllerTest2 extends ApplicationTest {
         clickOn("Up");
         clickOn("Up");
         FxAssert.verifyThat("OK", NodeMatchers.isVisible());
+        clickOn("OK");
     }
     @Test
     @Order(6)
@@ -162,5 +164,6 @@ public class ControllerTest2 extends ApplicationTest {
         clickOn("Down");
         clickOn("Down");
         FxAssert.verifyThat("OK", NodeMatchers.isVisible());
+        clickOn("OK");
     }
 }
