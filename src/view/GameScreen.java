@@ -84,6 +84,7 @@ public class GameScreen {
             startingMoney = 5;
         }
         Label currentRoom = new Label("Room: " + room);
+        currentRoom.setId("roomStatus");
         Label moneyStatus = new Label("Money: " + startingMoney);
         moneyStatus.setId("moneyStatus");
         Label weaponStatus = new Label("Weapon: " + weapon);

@@ -1,14 +1,15 @@
 import controller.Controller;
+import controller.ControllerT;
 import javafx.stage.Stage;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.testfx.api.FxAssert;
 import org.testfx.framework.junit.ApplicationTest;
+import org.testfx.matcher.base.NodeMatchers;
 import org.testfx.matcher.control.LabeledMatchers;
+
+import javax.naming.ldap.Control;
+
+import java.util.Arrays;
 
 import static org.testfx.api.FxToolkit.registerPrimaryStage;
 import static org.testfx.api.FxToolkit.setupApplication;
@@ -22,6 +23,8 @@ import static org.testfx.api.FxToolkit.setupApplication;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ControllerTest2 extends ApplicationTest {
 
+    public int[][]roomsArray;
+
     @BeforeAll
     public static void setupSpec() throws Exception {
         registerPrimaryStage();
@@ -29,13 +32,15 @@ public class ControllerTest2 extends ApplicationTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        setupApplication(Controller.class);
+        setupApplication(ControllerT.class);
     }
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Controller controller = new Controller();
+        ControllerT controller = new ControllerT();
         controller.start(primaryStage);
+
     }
     //Rahul Test
     @Test
@@ -63,5 +68,67 @@ public class ControllerTest2 extends ApplicationTest {
         clickOn("Down");
         clickOn("L");
         clickOn("OK");
+    }
+
+    //Ish Test
+    @Test
+    @Order(3)
+    public void testSuccessfulMazeTraversal() {
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Sword");
+        clickOn("Next");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 8"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Sword"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 1"));
+        clickOn("R");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 8"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Sword"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 2"));
+        clickOn("Down");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 8"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Sword"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 3"));
+        clickOn("R");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 8"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Sword"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 4"));
+        clickOn("Down");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 8"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Sword"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 5"));
+        clickOn("R");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 8"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Sword"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 6"));
+        clickOn("Up");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 8"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Sword"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 7"));
+        clickOn("R");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 8"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Sword"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 8"));
+        clickOn("Up");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 8"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Sword"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 9"));
+    }
+
+    @Test
+    public void testAccessRoomOutOfOrder() {
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Sword");
+        clickOn("Next");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 8"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Sword"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 1"));
+        clickOn("Down");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 8"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Sword"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 0"));
+        clickOn("R");
+        FxAssert.verifyThat("OK", NodeMatchers.isVisible());
     }
 }
