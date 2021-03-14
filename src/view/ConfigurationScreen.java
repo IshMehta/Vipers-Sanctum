@@ -25,16 +25,17 @@ import javafx.scene.text.FontWeight;
 public class ConfigurationScreen {
 
     // Creates the button that allows to go to initial game screen
-    Button nextScreen = new Button("Next");
-    String weapon;
-    String difficulty;
-    private ToggleGroup alignWeapon= new ToggleGroup();
-    private ToggleGroup alignDifficulty= new ToggleGroup();
+    private Button nextScreen = new Button("Next");
+    private String weapon;
+    private String difficulty;
+    private ToggleGroup alignWeapon = new ToggleGroup();
+    private ToggleGroup alignDifficulty = new ToggleGroup();
 
     public Scene showConfigScreen() {
         //Primary Border Pane that will be set to the scene
         BorderPane borderPane = new BorderPane();
-        BackgroundFill backgroundFill = new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY);
+        BackgroundFill backgroundFill = new BackgroundFill(Color.WHITE,
+                CornerRadii.EMPTY, Insets.EMPTY);
         Background background = new Background(backgroundFill);
         borderPane.setBackground(background);
         //Creates margins
@@ -74,7 +75,8 @@ public class ConfigurationScreen {
         submitName.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                if (enterName.getText() == null || enterName.getText().isBlank() || enterName.getText().isEmpty()) {
+                if (enterName.getText() == null || enterName.getText().isBlank()
+                        || enterName.getText().isEmpty()) {
                     Alert invalidName = new Alert(Alert.AlertType.WARNING);
                     invalidName.setContentText("Name cannot be empty or only whitespaces");
                     invalidName.setHeaderText("Enter Name");

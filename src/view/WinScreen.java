@@ -14,7 +14,7 @@ public class WinScreen {
         Label winText = new Label("You Won!");
         winText.setFont(Font.font("Cambria", 64));
         mainDisplay.setCenter(winText);
-        Scene RoomScene = new Scene(mainDisplay, 1280, 720);
-        return RoomScene;
+        Scene roomScene = new Scene(mainDisplay, 1280, 720);
+        return roomScene;
     }
 }
