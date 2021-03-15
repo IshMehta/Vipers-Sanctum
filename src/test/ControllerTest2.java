@@ -3,6 +3,7 @@ import controller.ControllerT;
 import javafx.stage.Stage;
 
 
+import org.junit.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -73,6 +74,16 @@ public class ControllerTest2 extends ApplicationTest {
         clickOn("Down");
         clickOn("L");
         clickOn("OK");
+    }
+
+    @Test
+    @Order(11)
+    public void checkRandomization() {
+        ControllerT controller1 = new ControllerT();
+        ControllerT controller2 = new ControllerT();
+        controller1.randomizeRooms();
+        controller2.randomizeRooms();
+        Assert.assertNotEquals(controller1.getRoomsArray(), controller2.getRoomsArray());
     }
 
     //Ish Test
@@ -318,4 +329,5 @@ public class ControllerTest2 extends ApplicationTest {
             }
         }
     }
+
 }
