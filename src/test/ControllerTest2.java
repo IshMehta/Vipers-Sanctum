@@ -166,7 +166,7 @@ public class ControllerTest2 extends ApplicationTest {
         FxAssert.verifyThat("OK", NodeMatchers.isVisible());
         clickOn("OK");
     }
-    
+
     //Asha Tests
     @Test
     @Order(7)
@@ -213,5 +213,62 @@ public class ControllerTest2 extends ApplicationTest {
         clickOn("R");
         FxAssert.verifyThat(".label", LabeledMatchers.hasText("You Won!"));
 
+    }
+
+    //Su Tests
+    @Test
+    @Order(9)
+    public void testAtLeastSixRoomsAway() {
+        clickOn("Play");
+        clickOn("Hard");
+        clickOn("Knife");
+        clickOn("Next");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 5"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Knife"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 1"));
+        clickOn("R");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 5"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Knife"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 2"));
+        clickOn("Down");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 5"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Knife"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 3"));
+        clickOn("R");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 5"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Knife"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 4"));
+        clickOn("Down");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 5"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Knife"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 5"));
+        clickOn("R");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 5"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Knife"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 6"));
+        clickOn("Up");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 5"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Knife"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 7"));
+        clickOn("R");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 5"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Knife"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 8"));
+        clickOn("Up");
+        FxAssert.verifyThat("#moneyStatus", LabeledMatchers.hasText("Money: 5"));
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Sword"));
+        FxAssert.verifyThat("#roomStatus", LabeledMatchers.hasText("Room: 9"));
+        clickOn("R");
+        FxAssert.verifyThat(".label", LabeledMatchers.hasText("You Won!"));
+    }
+
+    @Test
+    @Order(10)
+    public void checkExitRoom() {
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Knife");
+        clickOn("Next");
+        //
     }
 }
