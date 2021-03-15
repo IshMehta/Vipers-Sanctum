@@ -108,7 +108,7 @@ public class ControllerT extends Application {
         mainWindow.show();
     }
 
-    private void randomizeRooms() {
+    public void randomizeRooms() {
         roomsArray[0][2] = 1;
         int currentX = 0;
         int currentY = 2;
@@ -270,6 +270,8 @@ public class ControllerT extends Application {
         roomsArray = tempArray;
     }
 
-
+    public int[][] getRoomsArray() {
+        return roomsArray;
+    }
 }
 
