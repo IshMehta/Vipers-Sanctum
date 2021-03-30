@@ -1,6 +1,7 @@
 package view;
 
 import components.Monster;
+import javafx.animation.TranslateTransition;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
@@ -23,6 +24,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.util.Duration;
 
 public class GameScreen {
 
@@ -33,11 +35,14 @@ public class GameScreen {
     private Button buttonLeft = new Button("L");
     private Button buttonRight = new Button("R");
     private int room;
+    private Monster currMonster;
+    private Label monsterLabel = new Label();
 
     public GameScreen(String selectedDifficulty, String selectedWeapons, int roomIndex) {
         difficulty = selectedDifficulty;
         weapon = selectedWeapons;
         room = roomIndex;
+        currMonster = new Monster(room);
     }
 
     public Scene getScene() {
@@ -94,44 +99,12 @@ public class GameScreen {
                 new CornerRadii(0.0), new Insets(0.0))));
 
         //monster setting
-        Monster currMonster = new Monster(room);
-        Label monsterLabel = new Label();
-        Image goblinI = new Image("goblin.png");
-        ImageView goblin = new ImageView(goblinI);
-        goblin.setFitHeight(200);
-        goblin.setPreserveRatio(true);
-        Image goblinCommanderI = new Image("goblinCommander.png");
-        ImageView goblinCommander = new ImageView(goblinCommanderI);
-        goblinCommander.setFitHeight(200);
-        goblinCommander.setPreserveRatio(true);
-        Image viperI = new Image("viper.png");
-        ImageView viper = new ImageView(viperI);
-        viper.setFitHeight(200);
-        viper.setPreserveRatio(true);
-        switch (currMonster.getMonsterName()) {
-        case "Goblin":
-            System.out.print("OOF");
-            monsterLabel.setText("You are fighting a " + currMonster.getMonsterName());
-            monsterLabel.setGraphic(goblin);
-            break;
-        case "Goblin Commander":
-            monsterLabel.setText("You are fighting a " + currMonster.getMonsterName());
-            monsterLabel.setGraphic(goblinCommander);
-            break;
-        case "Viper":
-            monsterLabel.setText("You are fighting a " + currMonster.getMonsterName());
-            monsterLabel.setGraphic(viper);
-            break;
-        default:
-            monsterLabel.setText("");
-            monsterLabel.setGraphic(null);
-            break;
-        }
-        monsterLabel.setContentDisplay(ContentDisplay.BOTTOM);
-        monsterLabel.setTextAlignment(TextAlignment.CENTER);
-        monsterLabel.setFont(Font.font("Cambria", 20));
-        monsterLabel.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255, 0.5),
-                new CornerRadii(0.0), new Insets(0.0))));
+        setMonster();
+
+
+        //attack functions
+
+
         //middle view in screen (background and money,
         // basically the main screen that the player looks at)
         StackPane mainView = new StackPane();
@@ -188,6 +161,56 @@ public class GameScreen {
 
         return roomScene;
 
+    }
+
+    private void setMonster() {
+        Image goblinI = new Image("goblin.png");
+        ImageView goblin = new ImageView(goblinI);
+        goblin.setFitHeight(200);
+        goblin.setPreserveRatio(true);
+        Image goblinCommanderI = new Image("goblinCommander.png");
+        ImageView goblinCommander = new ImageView(goblinCommanderI);
+        goblinCommander.setFitHeight(200);
+        goblinCommander.setPreserveRatio(true);
+        Image viperI = new Image("viper.png");
+        ImageView viper = new ImageView(viperI);
+        viper.setFitHeight(300);
+        viper.setPreserveRatio(true);
+        switch (currMonster.getMonsterName()) {
+        case "Goblin":
+            System.out.print("OOF");
+            monsterLabel.setText("You are fighting a " + currMonster.getMonsterName() + "\nHP: "
+                    + currMonster.getMonsterHP());
+            monsterLabel.setGraphic(goblin);
+            break;
+        case "Goblin Commander":
+            monsterLabel.setText("You are fighting a " + currMonster.getMonsterName() + "\nHP: "
+                    + currMonster.getMonsterHP());
+            monsterLabel.setGraphic(goblinCommander);
+            break;
+        case "Viper":
+            monsterLabel.setText("You are fighting the " + currMonster.getMonsterName() + "\nHP: "
+                    + currMonster.getMonsterHP());
+            monsterLabel.setGraphic(viper);
+            break;
+        default:
+            monsterLabel.setText("");
+            monsterLabel.setGraphic(null);
+            break;
+        }
+        monsterLabel.setContentDisplay(ContentDisplay.BOTTOM);
+        monsterLabel.setTextAlignment(TextAlignment.CENTER);
+        monsterLabel.setFont(Font.font("Cambria", 20));
+        monsterLabel.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255, 0.5),
+                new CornerRadii(0.0), new Insets(0.0))));
+
+        TranslateTransition translate = new TranslateTransition();
+        translate.setNode(monsterLabel);
+        translate.setDuration(Duration.millis(1000));
+        translate.setCycleCount(TranslateTransition.INDEFINITE);
+        translate.setByX(-50);
+        translate.setAutoReverse(true);
+        translate.play();
     }
 
     public String getDifficulty() {

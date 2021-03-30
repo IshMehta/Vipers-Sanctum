@@ -16,9 +16,9 @@ public class Monster {
             return 0;
         }
         if (monsterIndex % 2 == 0) {
-            return 10;
-        } else if (monsterIndex != 9) {
             return 5;
+        } else if (monsterIndex != 9) {
+            return 10;
         } else {
             return 20;
         }

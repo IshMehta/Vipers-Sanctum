@@ -24,7 +24,7 @@ public class Controller extends Application {
     private String difficulty;
     private String weapon;
     private boolean[] roomsAccessed = new boolean[9];
-
+    private boolean[] monstersDefeated = new boolean[9];
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -240,10 +240,6 @@ public class Controller extends Application {
         }
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
     public int getCurrentRoomX() {
         return currentRoomX;
     }
@@ -261,7 +257,17 @@ public class Controller extends Application {
         roomsArray = tempArray;
     }
 
+    public boolean getMonstersDefeated(int monsterRoom) {
+        return monstersDefeated[monsterRoom - 1];
+    }
 
+    public void setMonstersDefeated(int monsterRoom, boolean defeated) {
+        this.monstersDefeated[monsterRoom - 1] = defeated;
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
 }
 
