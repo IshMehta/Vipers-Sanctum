@@ -1,5 +1,8 @@
 package view;
 
+import components.Monster;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,6 +22,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 public class GameScreen {
 
@@ -88,13 +92,55 @@ public class GameScreen {
                 new CornerRadii(0.0), new Insets(0.0))));
         currentRoom.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255, 0.7),
                 new CornerRadii(0.0), new Insets(0.0))));
+
+        //monster setting
+        Monster currMonster = new Monster(room);
+        Label monsterLabel = new Label();
+        Image goblinI = new Image("goblin.png");
+        ImageView goblin = new ImageView(goblinI);
+        goblin.setFitHeight(200);
+        goblin.setPreserveRatio(true);
+        Image goblinCommanderI = new Image("goblinCommander.png");
+        ImageView goblinCommander = new ImageView(goblinCommanderI);
+        goblinCommander.setFitHeight(200);
+        goblinCommander.setPreserveRatio(true);
+        Image viperI = new Image("viper.png");
+        ImageView viper = new ImageView(viperI);
+        viper.setFitHeight(200);
+        viper.setPreserveRatio(true);
+        switch (currMonster.getMonsterName()) {
+        case "Goblin":
+            System.out.print("OOF");
+            monsterLabel.setText("You are fighting a " + currMonster.getMonsterName());
+            monsterLabel.setGraphic(goblin);
+            break;
+        case "Goblin Commander":
+            monsterLabel.setText("You are fighting a " + currMonster.getMonsterName());
+            monsterLabel.setGraphic(goblinCommander);
+            break;
+        case "Viper":
+            monsterLabel.setText("You are fighting a " + currMonster.getMonsterName());
+            monsterLabel.setGraphic(viper);
+            break;
+        default:
+            monsterLabel.setText("");
+            monsterLabel.setGraphic(null);
+            break;
+        }
+        monsterLabel.setContentDisplay(ContentDisplay.BOTTOM);
+        monsterLabel.setTextAlignment(TextAlignment.CENTER);
+        monsterLabel.setFont(Font.font("Cambria", 20));
+        monsterLabel.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255, 0.5),
+                new CornerRadii(0.0), new Insets(0.0))));
         //middle view in screen (background and money,
         // basically the main screen that the player looks at)
         StackPane mainView = new StackPane();
         mainView.setAlignment(moneyStatus, Pos.TOP_RIGHT);
         mainView.setAlignment(weaponStatus, Pos.TOP_LEFT);
         mainView.setAlignment(currentRoom, Pos.TOP_CENTER);
-        Image background = new Image("file:src/dungeonTest.jpg");
+        mainView.setAlignment(monsterLabel, Pos.CENTER_RIGHT);
+        StackPane.setMargin(monsterLabel, new Insets(20, 20, 20, 20));
+        Image background = new Image("dungeonTest.jpg");
         BackgroundImage dungeonBackground = new BackgroundImage(background,
                 BackgroundRepeat.REPEAT,
                 BackgroundRepeat.REPEAT,
@@ -106,7 +152,7 @@ public class GameScreen {
                         true,
                         false));
         mainView.setBackground(new Background(dungeonBackground));
-        mainView.getChildren().addAll(moneyStatus, weaponStatus, currentRoom);
+        mainView.getChildren().addAll(moneyStatus, weaponStatus, currentRoom, monsterLabel);
         if (room != 9) {
             upSide.getChildren().add(buttonUp);
             downSide.getChildren().add(buttonDown);
@@ -140,10 +186,7 @@ public class GameScreen {
         roomL.setLeft(leftSide);
         roomL.setCenter(mainView);
 
-
         return roomScene;
-
-
 
     }
 
