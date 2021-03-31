@@ -194,6 +194,9 @@ public class GameScreen {
         buttonConfirmKill.setFont(Font.font("Cambria", 20));
         buttonConfirmKill.setPrefWidth(300);
         buttonConfirmKill.setPrefHeight(72);
+        buttonRestart.setFont(Font.font("Cambria", 40));
+        buttonRestart.setPrefWidth(300);
+        buttonRestart.setPrefHeight(150);
     }
 
     private void buttonChecker() {
@@ -418,8 +421,17 @@ public class GameScreen {
             buttonRestart.setDisable(false);
             setAnimations(false, true, true, false);
             roomL.setCenter(buttonRestart);
-            Label gameOver = new Label("Game Over");
-            roomL.setTop(gameOver);
+            Label gameOver = new Label("Game Over!");
+            gameOver.setTextAlignment(TextAlignment.CENTER);
+            gameOver.setFont(Font.font("Cambria", 80));
+            gameOver.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255, 0.7),
+                    new CornerRadii(0.0), new Insets(0.0))));
+            roomL.setBackground(new Background(new BackgroundFill(Color.rgb(0, 0, 0, 1),
+                    new CornerRadii(0.0), new Insets(0.0))));
+            StackPane backgroundFiller = new StackPane();
+            backgroundFiller.getChildren().addAll(gameOver);
+            backgroundFiller.setAlignment(Pos.CENTER);
+            roomL.setTop(backgroundFiller);
             roomL.setLeft(null);
             roomL.setRight(null);
             roomL.setBottom(null);
