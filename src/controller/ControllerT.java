@@ -1,5 +1,6 @@
 package controller;
 
+import components.Player;
 import javafx.application.Application;
 
 import javafx.scene.Scene;
@@ -25,7 +26,8 @@ public class ControllerT extends Application {
     private String difficulty;
     private String weapon;
     private boolean[] roomsAccessed = new boolean[9];
-
+    private boolean[] monstersDefeated = new boolean[9];
+    private Player player;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -43,6 +45,7 @@ public class ControllerT extends Application {
         setRooms(8, 4, 3);
         setRooms(9, 4, 2);
         System.out.println(Arrays.deepToString(roomsArray));
+        player = new Player(100);
         initWelcomeScreen();
     }
 
@@ -71,7 +74,7 @@ public class ControllerT extends Application {
         difficulty = selectedDifficulty;
         weapon = selectedWeapons;
         roomsAccessed[0] = true;
-        GameScreen game = new GameScreen(selectedDifficulty, selectedWeapons, 1);
+        GameScreen game = new GameScreen(selectedDifficulty, selectedWeapons, 1, player, false);
         Button buttonUp = game.getButtonUp();
         Button buttonDown = game.getButtonDown();
         Button buttonLeft = game.getButtonLeft();
@@ -87,7 +90,7 @@ public class ControllerT extends Application {
 
     private void switchRoom() {
         GameScreen room = new GameScreen(difficulty,
-                weapon, roomsArray[currentRoomX][currentRoomY]);
+                weapon, roomsArray[currentRoomX][currentRoomY], player, false);
         Button buttonUp = room.getButtonUp();
         Button buttonDown = room.getButtonDown();
         Button buttonLeft = room.getButtonLeft();

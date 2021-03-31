@@ -56,7 +56,7 @@ public class ControllerTest extends ApplicationTest {
     //Rahul Test
     @Test
     public void testTransferData() {
-        GameScreen game = new GameScreen("easy", "maul", 0);
+        GameScreen game = new GameScreen("easy", "maul", 0, null, false);
         Assertions.assertEquals(game.getWeapon(), "maul");
         Assertions.assertEquals(game.getDifficulty(), "easy");
     }
