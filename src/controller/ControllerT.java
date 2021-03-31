@@ -301,6 +301,9 @@ public class ControllerT extends Application {
     }
 
     public boolean getMonstersDefeated(int monsterRoom) {
+        if (monsterRoom == 0) {
+            return true;
+        }
         return monstersDefeated[monsterRoom - 1];
     }
 
