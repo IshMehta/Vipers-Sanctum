@@ -308,6 +308,7 @@ public class GameScreen {
         ImageView playerI = new ImageView(playerImage);
         playerI.setFitHeight(250);
         playerI.setPreserveRatio(true);
+        playerLabel.setId("playerLabel");
         playerLabel.setText("HP: " + player.getPlayerHP());
         playerLabel.setGraphic(playerI);
         playerLabel.setContentDisplay(ContentDisplay.BOTTOM);
@@ -351,6 +352,7 @@ public class GameScreen {
             monsterLabel.setGraphic(null);
             break;
         }
+        monsterLabel.setId("monsterLabel");
         monsterLabel.setContentDisplay(ContentDisplay.BOTTOM);
         monsterLabel.setTextAlignment(TextAlignment.CENTER);
         monsterLabel.setFont(Font.font("Cambria", 20));

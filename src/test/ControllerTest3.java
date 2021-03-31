@@ -49,6 +49,54 @@ public class ControllerTest3 extends ApplicationTest {
     }
 
     //tests go here
+    //Rahul Test
+    @Test
+    @Order(1)
+    public void testMonsterFaint() {
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Knife");
+        clickOn("Next");
+        clickOn("R");
+        clickOn("Attack");
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isInvisible());
+    }
+
+    @Test
+    @Order(2)
+    public void testNumMonsters() {
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Knife");
+        clickOn("Next");
+        clickOn("R");
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
+        clickOn("Attack");
+        clickOn("Down");
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
+        clickOn("Attack");
+        clickOn("Down");
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
+        clickOn("Attack");
+        clickOn("Up");
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
+        clickOn("Attack");
+        clickOn("Up");
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
+
+    }
 
 }
 
