@@ -1,4 +1,3 @@
-
 import controller.ControllerT;
 import javafx.stage.Stage;
 
