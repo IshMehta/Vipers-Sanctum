@@ -50,6 +50,7 @@ public class GameScreen {
     private Player player;
     private BorderPane roomL;
     private boolean monsterDefeated;
+    private StackPane mainView;
 
     public GameScreen(String selectedDifficulty, String selectedWeapons, int roomIndex, Player playerIn, boolean MonsterDefeated) {
         difficulty = selectedDifficulty;
@@ -115,7 +116,7 @@ public class GameScreen {
 
         //middle view in screen (background and money,
         // basically the main screen that the player looks at)
-        StackPane mainView = new StackPane();
+        mainView = new StackPane();
         mainView.setAlignment(moneyStatus, Pos.TOP_RIGHT);
         mainView.setAlignment(weaponStatus, Pos.TOP_LEFT);
         mainView.setAlignment(currentRoom, Pos.TOP_CENTER);
@@ -361,6 +362,8 @@ public class GameScreen {
     }
 
     private void setAnimations(boolean trans1, boolean trans2, boolean trans3, boolean trans4) {
+        mainView.setAlignment(monsterLabel, Pos.CENTER_RIGHT);
+        mainView.setAlignment(playerLabel, Pos.CENTER_LEFT);
         TranslateTransition translate1 = new TranslateTransition();
         translate1.setNode(playerLabel);
         translate1.setDuration(Duration.millis(1000));
@@ -413,7 +416,7 @@ public class GameScreen {
             buttonAttack.setDisable(true);
             buttonAttack.setVisible(false);
             monsterDefeated = true;
-            setAnimations(true, false, false, true);
+            setAnimations(false, false, false, true);
         }
         if (player.getPlayerHP() <= 0) {
             playerLabel.setText("You have died.");
