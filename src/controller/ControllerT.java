@@ -11,10 +11,7 @@ import view.ConfigurationScreen;
 import view.GameScreen;
 import view.WelcomeScreen;
 import view.WinScreen;
-
 import java.util.Arrays;
-
-
 
 public class ControllerT extends Application {
     private Stage mainWindow;
@@ -27,13 +24,18 @@ public class ControllerT extends Application {
     private String weapon;
     private boolean[] roomsAccessed = new boolean[9];
     private boolean[] monstersDefeated = new boolean[9];
+    private String lastRoom;
     private Player player;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         mainWindow = primaryStage;
         mainWindow.setTitle("Welcome to the Sanctum!");
-        randomizeRooms();
+        initWelcomeScreen();
+    }
+
+    private void initWelcomeScreen() {
+        cleanup();
         clearRooms();
         setRooms(1, 0, 2);
         setRooms(2, 1, 2);
@@ -45,11 +47,7 @@ public class ControllerT extends Application {
         setRooms(8, 4, 3);
         setRooms(9, 4, 2);
         System.out.println(Arrays.deepToString(roomsArray));
-        player = new Player(100);
-        initWelcomeScreen();
-    }
-
-    private void initWelcomeScreen() {
+        player = new Player(50);
         WelcomeScreen welcomeScreen = new WelcomeScreen(width, height);
         Button startButton = welcomeScreen.getStartButton();
         startButton.setOnAction(e -> goToConfigScreen());
@@ -58,6 +56,20 @@ public class ControllerT extends Application {
         Scene scene = welcomeScreen.getScene();
         mainWindow.setScene(scene);
         mainWindow.show();
+    }
+
+    private void cleanup() {
+        clearRooms();
+        randomizeRooms();
+        System.out.println(Arrays.deepToString(roomsArray));
+        currentRoomX = 0;
+        currentRoomY = 2;
+        difficulty = null;
+        weapon = null;
+        roomsAccessed = new boolean[9];
+        monstersDefeated = new boolean[9];
+        lastRoom = null;
+        player = new Player(100);
     }
 
     private void goToConfigScreen() {
@@ -74,7 +86,8 @@ public class ControllerT extends Application {
         difficulty = selectedDifficulty;
         weapon = selectedWeapons;
         roomsAccessed[0] = true;
-        GameScreen game = new GameScreen(selectedDifficulty, selectedWeapons, 1, player, false);
+        GameScreen game = new GameScreen(selectedDifficulty,
+                selectedWeapons, 1, player, getMonstersDefeated(roomsArray[currentRoomX][currentRoomY]));
         Button buttonUp = game.getButtonUp();
         Button buttonDown = game.getButtonDown();
         Button buttonLeft = game.getButtonLeft();
@@ -89,8 +102,9 @@ public class ControllerT extends Application {
     }
 
     private void switchRoom() {
-        GameScreen room = new GameScreen(difficulty,
-                weapon, roomsArray[currentRoomX][currentRoomY], player, false);
+        GameScreen room = new GameScreen(difficulty, weapon,
+                roomsArray[currentRoomX][currentRoomY], player,
+                getMonstersDefeated(roomsArray[currentRoomX][currentRoomY]));
         Button buttonUp = room.getButtonUp();
         Button buttonDown = room.getButtonDown();
         Button buttonLeft = room.getButtonLeft();
@@ -98,8 +112,21 @@ public class ControllerT extends Application {
         buttonUp.setOnAction(e -> roomManager("Up"));
         buttonDown.setOnAction(e -> roomManager("Down"));
         buttonLeft.setOnAction(e -> roomManager("Left"));
-        buttonRight.setOnAction(e -> roomManager("Right"));
+        buttonRight.setOnAction(e ->
+                roomManager("Right"));
+        Button buttonRestart = room.getButtonRestart();
+        buttonRestart.setOnAction(e -> initWelcomeScreen());
+        Button buttonRetreat = room.getButtonRetreat();
+        buttonRetreat.setOnAction(e -> roomManager(lastRoom));
+        Button buttonConfirm = room.getButtonConfirmKill();
+        buttonConfirm.setOnAction(e -> {
+            setMonstersDefeated(roomsArray[currentRoomX][currentRoomY], true);
+            buttonConfirm.setVisible(false);
+        });
         Scene scene = room.getScene();
+        if (getMonstersDefeated(roomsArray[currentRoomX][currentRoomY])) {
+            buttonConfirm.setVisible(false);
+        }
         mainWindow.setScene(scene);
         mainWindow.show();
     }
@@ -144,80 +171,84 @@ public class ControllerT extends Application {
 
     public void roomManager(String direction) {
         switch (direction) {
-        case "Up":
-            if (currentRoomY == 0) {
-                Alert invalidRoom = new Alert(Alert.AlertType.WARNING);
-                invalidRoom.setContentText("You are at the edge of the dungeon "
-                        + "and cannot travel this way");
-                invalidRoom.setHeaderText("Choose a different exit");
-                invalidRoom.setTitle("Invalid Exit");
-                invalidRoom.show();
-            } else {
-                currentRoomY--;
-                if (roomsArray[currentRoomX][currentRoomY] != 0
-                        && roomsArray[currentRoomX][currentRoomY] != 1) {
-                    roomValidity(direction);
+            case "Up":
+                if (currentRoomY == 0) {
+                    Alert invalidRoom = new Alert(Alert.AlertType.WARNING);
+                    invalidRoom.setContentText("You are at the edge of "
+                            + "the dungeon and cannot travel this way");
+                    invalidRoom.setHeaderText("Choose a different exit");
+                    invalidRoom.setTitle("Invalid Exit");
+                    invalidRoom.show();
+                } else {
+                    lastRoom = "Down";
+                    currentRoomY--;
+                    if (roomsArray[currentRoomX][currentRoomY] != 0
+                            && roomsArray[currentRoomX][currentRoomY] != 1) {
+                        roomValidity(direction);
+                    }
+                    switchRoom();
                 }
-                switchRoom();
-            }
-            break;
-        case "Down":
-            if (currentRoomY == 4) {
-                Alert invalidRoom = new Alert(Alert.AlertType.WARNING);
-                invalidRoom.setContentText("You are at the edge of the dungeon "
-                        + "and cannot travel this way");
-                invalidRoom.setHeaderText("Choose a different exit");
-                invalidRoom.setTitle("Invalid Exit");
-                invalidRoom.show();
-            } else {
-                currentRoomY++;
-                if (roomsArray[currentRoomX][currentRoomY] != 0
-                        && roomsArray[currentRoomX][currentRoomY] != 1) {
-                    roomValidity(direction);
+                break;
+            case "Down":
+                if (currentRoomY == 4) {
+                    Alert invalidRoom = new Alert(Alert.AlertType.WARNING);
+                    invalidRoom.setContentText("You are at the edge of the dungeon "
+                            + "and cannot travel this way");
+                    invalidRoom.setHeaderText("Choose a different exit");
+                    invalidRoom.setTitle("Invalid Exit");
+                    invalidRoom.show();
+                } else {
+                    lastRoom = "Up";
+                    currentRoomY++;
+                    if (roomsArray[currentRoomX][currentRoomY] != 0
+                            && roomsArray[currentRoomX][currentRoomY] != 1) {
+                        roomValidity(direction);
+                    }
+                    switchRoom();
                 }
-                switchRoom();
-            }
-            break;
-        case "Right":
-            if (roomsArray[currentRoomX][currentRoomY] == 9) {
-                goToWinScreen();
-                return;
-            }
-            if (currentRoomX == 4) {
-                Alert invalidRoom = new Alert(Alert.AlertType.WARNING);
-                invalidRoom.setContentText("You are at the edge of the dungeon "
-                        + "and cannot travel this way");
-                invalidRoom.setHeaderText("Choose a different exit");
-                invalidRoom.setTitle("Invalid Exit");
-                invalidRoom.show();
-            } else {
-                currentRoomX++;
-                if (roomsArray[currentRoomX][currentRoomY] != 0
-                        && roomsArray[currentRoomX][currentRoomY] != 1) {
-                    roomValidity(direction);
+                break;
+            case "Right":
+                if (roomsArray[currentRoomX][currentRoomY] == 9) {
+                    goToWinScreen();
+                    return;
                 }
-                switchRoom();
-            }
-            break;
-        case "Left":
-            if (currentRoomX == 0) {
-                Alert invalidRoom = new Alert(Alert.AlertType.WARNING);
-                invalidRoom.setContentText("You are at the edge of the dungeon "
-                        + "and cannot travel this way");
-                invalidRoom.setHeaderText("Choose a different exit");
-                invalidRoom.setTitle("Invalid Exit");
-                invalidRoom.show();
-            } else {
-                currentRoomX--;
-                if (roomsArray[currentRoomX][currentRoomY] != 0
-                        && roomsArray[currentRoomX][currentRoomY] != 1) {
-                    roomValidity(direction);
+                if (currentRoomX == 4) {
+                    Alert invalidRoom = new Alert(Alert.AlertType.WARNING);
+                    invalidRoom.setContentText("You are at the edge of "
+                            + "the dungeon and cannot travel this way");
+                    invalidRoom.setHeaderText("Choose a different exit");
+                    invalidRoom.setTitle("Invalid Exit");
+                    invalidRoom.show();
+                } else {
+                    lastRoom = "Left";
+                    currentRoomX++;
+                    if (roomsArray[currentRoomX][currentRoomY] != 0
+                            && roomsArray[currentRoomX][currentRoomY] != 1) {
+                        roomValidity(direction);
+                    }
+                    switchRoom();
                 }
-                switchRoom();
-            }
-            break;
-        default:
-            break;
+                break;
+            case "Left":
+                if (currentRoomX == 0) {
+                    Alert invalidRoom = new Alert(Alert.AlertType.WARNING);
+                    invalidRoom.setContentText("You are at the edge of the dungeon "
+                            + "and cannot travel this way");
+                    invalidRoom.setHeaderText("Choose a different exit");
+                    invalidRoom.setTitle("Invalid Exit");
+                    invalidRoom.show();
+                } else {
+                    lastRoom = "Right";
+                    currentRoomX--;
+                    if (roomsArray[currentRoomX][currentRoomY] != 0
+                            && roomsArray[currentRoomX][currentRoomY] != 1) {
+                        roomValidity(direction);
+                    }
+                    switchRoom();
+                }
+                break;
+            default:
+                break;
         }
     }
 
@@ -234,26 +265,22 @@ public class ControllerT extends Application {
             invalidRoom.setTitle("Invalid Exit");
             invalidRoom.show();
             switch (direction) {
-            case "Up":
-                currentRoomY++;
-                break;
-            case "Down":
-                currentRoomY--;
-                break;
-            case "Right":
-                currentRoomX--;
-                break;
-            case "Left":
-                currentRoomX++;
-                break;
-            default:
-                break;
+                case "Up":
+                    currentRoomY++;
+                    break;
+                case "Down":
+                    currentRoomY--;
+                    break;
+                case "Right":
+                    currentRoomX--;
+                    break;
+                case "Left":
+                    currentRoomX++;
+                    break;
+                default:
+                    break;
             }
         }
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 
     public int getCurrentRoomX() {
@@ -271,6 +298,18 @@ public class ControllerT extends Application {
     public void clearRooms() {
         int[][] tempArray = new int[5][5];
         roomsArray = tempArray;
+    }
+
+    public boolean getMonstersDefeated(int monsterRoom) {
+        return monstersDefeated[monsterRoom - 1];
+    }
+
+    public void setMonstersDefeated(int monsterRoom, boolean defeated) {
+        this.monstersDefeated[monsterRoom - 1] = defeated;
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 
     public int[][] getRoomsArray() {
