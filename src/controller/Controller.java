@@ -33,14 +33,11 @@ public class Controller extends Application {
     public void start(Stage primaryStage) throws Exception {
         mainWindow = primaryStage;
         mainWindow.setTitle("Welcome to the Sanctum!");
-        randomizeRooms();
-        System.out.println(Arrays.deepToString(roomsArray));
-        player = new Player(100);
         initWelcomeScreen();
     }
 
     private void initWelcomeScreen() {
-        //cleanup();
+        cleanup();
         WelcomeScreen welcomeScreen = new WelcomeScreen(width, height);
         Button startButton = welcomeScreen.getStartButton();
         startButton.setOnAction(e -> goToConfigScreen());
@@ -49,6 +46,20 @@ public class Controller extends Application {
         Scene scene = welcomeScreen.getScene();
         mainWindow.setScene(scene);
         mainWindow.show();
+    }
+
+    private void cleanup() {
+        clearRooms();
+        randomizeRooms();
+        System.out.println(Arrays.deepToString(roomsArray));
+        currentRoomX = 0;
+        currentRoomY = 2;
+        difficulty = null;
+        weapon = null;
+        roomsAccessed = new boolean[9];
+        monstersDefeated = new boolean[9];
+        lastRoom = null;
+        player = new Player(1);
     }
 
     private void goToConfigScreen() {
