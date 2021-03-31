@@ -1,5 +1,6 @@
 package controller;
 
+import components.Player;
 import javafx.application.Application;
 
 import javafx.scene.Scene;
@@ -24,7 +25,9 @@ public class Controller extends Application {
     private String difficulty;
     private String weapon;
     private boolean[] roomsAccessed = new boolean[9];
-
+    private boolean[] monstersDefeated = new boolean[9];
+    private String lastRoom;
+    private Player player;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -32,10 +35,12 @@ public class Controller extends Application {
         mainWindow.setTitle("Welcome to the Sanctum!");
         randomizeRooms();
         System.out.println(Arrays.deepToString(roomsArray));
+        player = new Player(100);
         initWelcomeScreen();
     }
 
     private void initWelcomeScreen() {
+        //cleanup();
         WelcomeScreen welcomeScreen = new WelcomeScreen(width, height);
         Button startButton = welcomeScreen.getStartButton();
         startButton.setOnAction(e -> goToConfigScreen());
@@ -61,7 +66,7 @@ public class Controller extends Application {
         weapon = selectedWeapons;
         roomsAccessed[0] = true;
         GameScreen game = new GameScreen(selectedDifficulty,
-                selectedWeapons, 1);
+                selectedWeapons, 1, player, getMonstersDefeated(roomsArray[currentRoomX][currentRoomY]));
         Button buttonUp = game.getButtonUp();
         Button buttonDown = game.getButtonDown();
         Button buttonLeft = game.getButtonLeft();
@@ -77,7 +82,8 @@ public class Controller extends Application {
 
     private void switchRoom() {
         GameScreen room = new GameScreen(difficulty, weapon,
-                roomsArray[currentRoomX][currentRoomY]);
+                roomsArray[currentRoomX][currentRoomY], player,
+                getMonstersDefeated(roomsArray[currentRoomX][currentRoomY]));
         Button buttonUp = room.getButtonUp();
         Button buttonDown = room.getButtonDown();
         Button buttonLeft = room.getButtonLeft();
@@ -87,7 +93,19 @@ public class Controller extends Application {
         buttonLeft.setOnAction(e -> roomManager("Left"));
         buttonRight.setOnAction(e ->
                 roomManager("Right"));
+        Button buttonRestart = room.getButtonRestart();
+        buttonRestart.setOnAction(e -> initWelcomeScreen());
+        Button buttonRetreat = room.getButtonRetreat();
+        buttonRetreat.setOnAction(e -> roomManager(lastRoom));
+        Button buttonConfirm = room.getButtonConfirmKill();
+        buttonConfirm.setOnAction(e -> {
+            setMonstersDefeated(roomsArray[currentRoomX][currentRoomY], true);
+            buttonConfirm.setVisible(false);
+        });
         Scene scene = room.getScene();
+        if (getMonstersDefeated(roomsArray[currentRoomX][currentRoomY])) {
+            buttonConfirm.setVisible(false);
+        }
         mainWindow.setScene(scene);
         mainWindow.show();
     }
@@ -141,6 +159,7 @@ public class Controller extends Application {
                 invalidRoom.setTitle("Invalid Exit");
                 invalidRoom.show();
             } else {
+                lastRoom = "Down";
                 currentRoomY--;
                 if (roomsArray[currentRoomX][currentRoomY] != 0
                         && roomsArray[currentRoomX][currentRoomY] != 1) {
@@ -158,6 +177,7 @@ public class Controller extends Application {
                 invalidRoom.setTitle("Invalid Exit");
                 invalidRoom.show();
             } else {
+                lastRoom = "Up";
                 currentRoomY++;
                 if (roomsArray[currentRoomX][currentRoomY] != 0
                         && roomsArray[currentRoomX][currentRoomY] != 1) {
@@ -179,6 +199,7 @@ public class Controller extends Application {
                 invalidRoom.setTitle("Invalid Exit");
                 invalidRoom.show();
             } else {
+                lastRoom = "Left";
                 currentRoomX++;
                 if (roomsArray[currentRoomX][currentRoomY] != 0
                         && roomsArray[currentRoomX][currentRoomY] != 1) {
@@ -196,6 +217,7 @@ public class Controller extends Application {
                 invalidRoom.setTitle("Invalid Exit");
                 invalidRoom.show();
             } else {
+                lastRoom = "Right";
                 currentRoomX--;
                 if (roomsArray[currentRoomX][currentRoomY] != 0
                         && roomsArray[currentRoomX][currentRoomY] != 1) {
@@ -240,10 +262,6 @@ public class Controller extends Application {
         }
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
     public int getCurrentRoomX() {
         return currentRoomX;
     }
@@ -261,7 +279,17 @@ public class Controller extends Application {
         roomsArray = tempArray;
     }
 
+    public boolean getMonstersDefeated(int monsterRoom) {
+        return monstersDefeated[monsterRoom - 1];
+    }
 
+    public void setMonstersDefeated(int monsterRoom, boolean defeated) {
+        this.monstersDefeated[monsterRoom - 1] = defeated;
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
 }
 
