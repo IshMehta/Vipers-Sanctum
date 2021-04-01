@@ -47,7 +47,7 @@ public class ControllerT extends Application {
         setRooms(8, 4, 3);
         setRooms(9, 4, 2);
         System.out.println(Arrays.deepToString(roomsArray));
-        player = new Player(50);
+        player = new Player(70);
         WelcomeScreen welcomeScreen = new WelcomeScreen(width, height);
         Button startButton = welcomeScreen.getStartButton();
         startButton.setOnAction(e -> goToConfigScreen());
