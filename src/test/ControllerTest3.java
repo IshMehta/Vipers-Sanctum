@@ -294,6 +294,76 @@ public class ControllerTest3 extends ApplicationTest {
 
     }
 
+    //Dip Tests
+
+    @Test
+    public void monsterTypes() {
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Knife");
+        clickOn("Next");
+        clickOn("R");
+        FxAssert.verifyThat("#monsterLabel",
+                LabeledMatchers.hasText("You are fighting a Goblin" + "\nHP: 5"));
+        clickOn("Attack");
+        clickOn("Down");
+        FxAssert.verifyThat("#monsterLabel",
+                LabeledMatchers.hasText("You are fighting a Goblin Commander" + "\nHP: 10"));
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Up");
+        FxAssert.verifyThat("#monsterLabel",
+                LabeledMatchers.hasText("You are fighting the Viper" + "\nHP: 20"));
+        clickOn("Attack");
+        clickOn("Restart");
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Knife");
+        clickOn("Next");
+    }
+
+    @Test
+    public void testGameOver() {
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Knife");
+        clickOn("Next");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Restart");
+    }
+
+
+
 
 }
 
