@@ -77,7 +77,8 @@ public class Controller extends Application {
         weapon = selectedWeapons;
         roomsAccessed[0] = true;
         GameScreen game = new GameScreen(selectedDifficulty,
-                selectedWeapons, 1, player, getMonstersDefeated(roomsArray[currentRoomX][currentRoomY]));
+                selectedWeapons, 1, player,
+                getMonstersDefeated(roomsArray[currentRoomX][currentRoomY]));
         Button buttonUp = game.getButtonUp();
         Button buttonDown = game.getButtonDown();
         Button buttonLeft = game.getButtonLeft();

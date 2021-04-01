@@ -2,7 +2,6 @@ package view;
 
 import components.Monster;
 import components.Player;
-import controller.Controller;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.control.ContentDisplay;
@@ -52,14 +51,15 @@ public class GameScreen {
     private boolean monsterDefeated;
     private StackPane mainView;
 
-    public GameScreen(String selectedDifficulty, String selectedWeapons, int roomIndex, Player playerIn, boolean MonsterDefeated) {
+    public GameScreen(String selectedDifficulty, String selectedWeapons, int roomIndex,
+                      Player playerIn, boolean monsterDefeatedIn) {
         difficulty = selectedDifficulty;
         weapon = selectedWeapons;
         room = roomIndex;
         currMonster = new Monster(room);
         player = playerIn;
         buttonRestart.setVisible(false);
-        monsterDefeated = MonsterDefeated;
+        monsterDefeated = monsterDefeatedIn;
     }
 
     public Scene getScene() {
@@ -123,7 +123,7 @@ public class GameScreen {
         mainView.setAlignment(monsterLabel, Pos.CENTER_RIGHT);
         mainView.setAlignment(playerLabel, Pos.CENTER_LEFT);
         mainView.setAlignment(buttonAttack, Pos.BOTTOM_RIGHT);
-        mainView.setAlignment(buttonRetreat, Pos. BOTTOM_LEFT);
+        mainView.setAlignment(buttonRetreat, Pos.BOTTOM_LEFT);
         mainView.setAlignment(buttonConfirmKill, Pos.CENTER);
         StackPane.setMargin(monsterLabel, new Insets(20, 20, 20, 20));
         StackPane.setMargin(playerLabel, new Insets(20, 20, 20, 20));
@@ -134,7 +134,8 @@ public class GameScreen {
                 BackgroundPosition.CENTER,
                 new BackgroundSize(1200, 450, false, false, true, false));
         mainView.setBackground(new Background(dungeonBackground));
-        mainView.getChildren().addAll(moneyStatus, weaponStatus, currentRoom, monsterLabel, playerLabel, buttonAttack, buttonRetreat, buttonConfirmKill);
+        mainView.getChildren().addAll(moneyStatus, weaponStatus, currentRoom, monsterLabel,
+                playerLabel, buttonAttack, buttonRetreat, buttonConfirmKill);
         buttonChecker();
         if (room != 9) {
             upSide.getChildren().add(buttonUp);
@@ -261,7 +262,7 @@ public class GameScreen {
             if (attackindex % 2 == 0) {
                 currMonster.setMonsterHP(currMonster.getMonsterHP() - attackdmg);
             } else {
-                //log message
+                System.out.println("Weapon is on cooldown");
             }
             break;
         case "Sword":
@@ -270,10 +271,10 @@ public class GameScreen {
                 if (randomGen < .7) {
                     currMonster.setMonsterHP(currMonster.getMonsterHP() - attackdmg);
                 } else {
-                    //log message
+                    System.out.println("The sword missed");
                 }
             } else {
-                //log message
+                System.out.println("Weapon is on cooldown");
             }
             break;
         case "Bow":
@@ -281,8 +282,10 @@ public class GameScreen {
             if (randomGen < .7) {
                 currMonster.setMonsterHP(currMonster.getMonsterHP() - attackdmg);
             } else {
-                //log message
+                System.out.println("The bow missed");
             }
+            break;
+        default:
             break;
         }
         switch (currMonster.getMonsterName()) {
@@ -294,6 +297,8 @@ public class GameScreen {
             break;
         case "Viper":
             player.setPlayerHP(player.getPlayerHP() - 10);
+            break;
+        default:
             break;
         }
         attackindex++;
