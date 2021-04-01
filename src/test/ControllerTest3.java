@@ -20,7 +20,7 @@ import static org.testfx.api.FxToolkit.registerPrimaryStage;
 import static org.testfx.api.FxToolkit.setupApplication;
 
 /**
- * Set of unit tests to test M4 implementations.
+ * Set of unit tests to test M3 implementations.
  *
  * @author Vipers
  * @version 1.0
@@ -97,7 +97,7 @@ public class ControllerTest3 extends ApplicationTest {
         FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
 
     }
-
+  
     //Su Tests
     @Test
     @Order(3)
