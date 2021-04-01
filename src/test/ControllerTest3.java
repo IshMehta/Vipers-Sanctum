@@ -248,6 +248,51 @@ public class ControllerTest3 extends ApplicationTest {
         FxAssert.verifyThat("R", NodeMatchers.isVisible());
         FxAssert.verifyThat("L", NodeMatchers.isVisible());
     }
+    //Asha Tests
+
+    @Test
+    public void testPlayerHP(){
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Knife");
+        clickOn("Next");
+        clickOn("R");
+        FxAssert.verifyThat("#playerLabel",
+                LabeledMatchers.hasText("HP: 50"));
+    }
+
+    @Test
+    public void testRestart() {
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Knife");
+        clickOn("Next");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Restart");
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Knife");
+        clickOn("Next");
+
+    }
 
 
 }
