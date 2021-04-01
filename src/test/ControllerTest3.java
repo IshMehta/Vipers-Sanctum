@@ -98,5 +98,34 @@ public class ControllerTest3 extends ApplicationTest {
 
     }
 
+    //Su Tests
+    @Test
+    @Order(3)
+    public void testAttack() {
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Maul");
+        clickOn("Next");
+        clickOn("R");
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
+        clickOn("Attack");
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isInvisible());
+    }
+
+    @Test
+    @Order(4)
+    public void testRetreat()  {
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Knife");
+        clickOn("Next");
+        clickOn("R");
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
+        clickOn("Attack");
+        clickOn("Down");
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
+        clickOn("Up");
+    }
+
 }
 
