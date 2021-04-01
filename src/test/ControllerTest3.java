@@ -1,9 +1,9 @@
-import components.Player;
+
 import controller.ControllerT;
 import javafx.stage.Stage;
 
 
-import org.junit.Assert;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ import org.testfx.api.FxAssert;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
 import org.testfx.matcher.control.LabeledMatchers;
-import view.GameScreen;
+
 
 
 import static org.testfx.api.FxToolkit.registerPrimaryStage;
@@ -141,63 +141,97 @@ public class ControllerTest3 extends ApplicationTest {
         clickOn("Next");
         clickOn("R");
         FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
-        FxAssert.verifyThat("#monsterLabel", LabeledMatchers.hasText("You are fighting a Goblin" + "\nHP: 5"));
-        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 50"));
+        FxAssert.verifyThat("#monsterLabel",
+                LabeledMatchers.hasText("You are fighting a Goblin" + "\nHP: 5"));
+        FxAssert.verifyThat("#playerLabel",
+                LabeledMatchers.hasText("HP: 50"));
         clickOn("Attack");
-        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 47"));
+        FxAssert.verifyThat("#playerLabel",
+                LabeledMatchers.hasText("HP: 47"));
         clickOn("Down");
         FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
-        FxAssert.verifyThat("#monsterLabel", LabeledMatchers.hasText("You are fighting a Goblin Commander" + "\nHP: 10"));
-        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 47"));
+        FxAssert.verifyThat("#monsterLabel",
+                LabeledMatchers.hasText("You are fighting a Goblin Commander" + "\nHP: 10"));
+        FxAssert.verifyThat("#playerLabel",
+                LabeledMatchers.hasText("HP: 47"));
         clickOn("Attack");
-        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 41"));
-        FxAssert.verifyThat("#monsterLabel", LabeledMatchers.hasText("You are fighting a Goblin Commander" + "\nHP: 5"));
+        FxAssert.verifyThat("#playerLabel",
+                LabeledMatchers.hasText("HP: 41"));
+        FxAssert.verifyThat("#monsterLabel",
+                LabeledMatchers.hasText("You are fighting a Goblin Commander" + "\nHP: 5"));
         clickOn("Attack");
-        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 35"));
+        FxAssert.verifyThat("#playerLabel",
+                LabeledMatchers.hasText("HP: 35"));
         clickOn("R");
         FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
-        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 35"));
-        FxAssert.verifyThat("#monsterLabel", LabeledMatchers.hasText("You are fighting a Goblin" + "\nHP: 5"));
+        FxAssert.verifyThat("#playerLabel",
+                LabeledMatchers.hasText("HP: 35"));
+        FxAssert.verifyThat("#monsterLabel",
+                LabeledMatchers.hasText("You are fighting a Goblin" + "\nHP: 5"));
         clickOn("Attack");
-        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 32"));
+        FxAssert.verifyThat("#playerLabel",
+                LabeledMatchers.hasText("HP: 32"));
         clickOn("Down");
-        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
-        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 32"));
-        FxAssert.verifyThat("#monsterLabel", LabeledMatchers.hasText("You are fighting a Goblin Commander" + "\nHP: 10"));
+        FxAssert.verifyThat("#monsterLabel",
+                NodeMatchers.isVisible());
+        FxAssert.verifyThat("#playerLabel",
+                LabeledMatchers.hasText("HP: 32"));
+        FxAssert.verifyThat("#monsterLabel",
+                LabeledMatchers.hasText("You are fighting a Goblin Commander" + "\nHP: 10"));
         clickOn("Attack");
-        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 26"));
-        FxAssert.verifyThat("#monsterLabel", LabeledMatchers.hasText("You are fighting a Goblin Commander" + "\nHP: 5"));
+        FxAssert.verifyThat("#playerLabel",
+                LabeledMatchers.hasText("HP: 26"));
+        FxAssert.verifyThat("#monsterLabel",
+                LabeledMatchers.hasText("You are fighting a Goblin Commander" + "\nHP: 5"));
         clickOn("Attack");
-        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 20"));
+        FxAssert.verifyThat("#playerLabel",
+                LabeledMatchers.hasText("HP: 20"));
         clickOn("R");
-        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
-        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 20"));
-        FxAssert.verifyThat("#monsterLabel", LabeledMatchers.hasText("You are fighting a Goblin" + "\nHP: 5"));
+        FxAssert.verifyThat("#monsterLabel",
+                NodeMatchers.isVisible());
+        FxAssert.verifyThat("#playerLabel",
+                LabeledMatchers.hasText("HP: 20"));
+        FxAssert.verifyThat("#monsterLabel",
+                LabeledMatchers.hasText("You are fighting a Goblin" + "\nHP: 5"));
         clickOn("Attack");
-        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 17"));
+        FxAssert.verifyThat("#playerLabel",
+                LabeledMatchers.hasText("HP: 17"));
         clickOn("Up");
-        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
-        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 17"));
-        FxAssert.verifyThat("#monsterLabel", LabeledMatchers.hasText("You are fighting a Goblin Commander" + "\nHP: 10"));
+        FxAssert.verifyThat("#monsterLabel",
+                NodeMatchers.isVisible());
+        FxAssert.verifyThat("#playerLabel",
+                LabeledMatchers.hasText("HP: 17"));
+        FxAssert.verifyThat("#monsterLabel",
+                LabeledMatchers.hasText("You are fighting a Goblin Commander" + "\nHP: 10"));
         clickOn("Attack");
-        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 11"));
-        FxAssert.verifyThat("#monsterLabel", LabeledMatchers.hasText("You are fighting a Goblin Commander" + "\nHP: 5"));
+        FxAssert.verifyThat("#playerLabel",
+                LabeledMatchers.hasText("HP: 11"));
+        FxAssert.verifyThat("#monsterLabel",
+                LabeledMatchers.hasText("You are fighting a Goblin Commander" + "\nHP: 5"));
         clickOn("Attack");
-        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 5"));
+        FxAssert.verifyThat("#playerLabel",
+                LabeledMatchers.hasText("HP: 5"));
         clickOn("R");
-        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
-        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 5"));
-        FxAssert.verifyThat("#monsterLabel", LabeledMatchers.hasText("You are fighting a Goblin" + "\nHP: 5"));
+        FxAssert.verifyThat("#monsterLabel",
+                NodeMatchers.isVisible());
+        FxAssert.verifyThat("#playerLabel",
+                LabeledMatchers.hasText("HP: 5"));
+        FxAssert.verifyThat("#monsterLabel",
+                LabeledMatchers.hasText("You are fighting a Goblin" + "\nHP: 5"));
         clickOn("Attack");
-        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 2"));
+        FxAssert.verifyThat("#playerLabel",
+                LabeledMatchers.hasText("HP: 2"));
         clickOn("Up");
-        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
-        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 2"));
-        FxAssert.verifyThat("#monsterLabel", LabeledMatchers.hasText("You are fighting the Viper" + "\nHP: 20"));
+        FxAssert.verifyThat("#monsterLabel",
+                NodeMatchers.isVisible());
+        FxAssert.verifyThat("#playerLabel",
+                LabeledMatchers.hasText("HP: 2"));
+        FxAssert.verifyThat("#monsterLabel",
+                LabeledMatchers.hasText("You are fighting the Viper" + "\nHP: 20"));
     }
 
     @Test
-    public void testIfUnlockedDoor(){
+    public void testIfUnlockedDoor() {
         clickOn("Play");
         clickOn("Easy");
         clickOn("Knife");
