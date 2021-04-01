@@ -97,6 +97,7 @@ public class ControllerTest3 extends ApplicationTest {
         FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
 
     }
+  
     //Su Tests
     @Test
     @Order(3)
@@ -113,8 +114,8 @@ public class ControllerTest3 extends ApplicationTest {
 
     @Test
     @Order(4)
-    public void testRetreat() {
-    	clickOn("Play");
+    public void testRetreat()  {
+        clickOn("Play");
         clickOn("Easy");
         clickOn("Knife");
         clickOn("Next");
