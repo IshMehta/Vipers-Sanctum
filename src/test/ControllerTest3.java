@@ -122,9 +122,11 @@ public class ControllerTest3 extends ApplicationTest {
         clickOn("R");
         FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
         clickOn("Attack");
+        clickOn("Confirm the Kill");
         clickOn("Down");
         FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
-        clickOn("Up");
+        clickOn("Retreat");
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isInvisible());
     }
 
 }
