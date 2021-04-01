@@ -1,8 +1,5 @@
-
 import controller.ControllerT;
 import javafx.stage.Stage;
-
-
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -134,6 +131,7 @@ public class ControllerTest3 extends ApplicationTest {
     //Ish Test
 
     @Test
+    @Order(5)
     public void testDamage() {
         clickOn("Play");
         clickOn("Easy");
@@ -231,6 +229,7 @@ public class ControllerTest3 extends ApplicationTest {
     }
 
     @Test
+    @Order(6)
     public void testIfUnlockedDoor() {
         clickOn("Play");
         clickOn("Easy");
@@ -251,7 +250,8 @@ public class ControllerTest3 extends ApplicationTest {
     //Asha Tests
 
     @Test
-    public void testPlayerHP(){
+    @Order(7)
+    public void testPlayerHP() {
         clickOn("Play");
         clickOn("Easy");
         clickOn("Knife");
@@ -262,6 +262,7 @@ public class ControllerTest3 extends ApplicationTest {
     }
 
     @Test
+    @Order(8)
     public void testRestart() {
         clickOn("Play");
         clickOn("Easy");
@@ -297,6 +298,7 @@ public class ControllerTest3 extends ApplicationTest {
     //Dip Tests
 
     @Test
+    @Order(9)
     public void monsterTypes() {
         clickOn("Play");
         clickOn("Easy");
@@ -335,6 +337,7 @@ public class ControllerTest3 extends ApplicationTest {
     }
 
     @Test
+    @Order(10)
     public void testGameOver() {
         clickOn("Play");
         clickOn("Easy");
