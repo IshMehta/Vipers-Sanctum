@@ -20,7 +20,7 @@ import static org.testfx.api.FxToolkit.registerPrimaryStage;
 import static org.testfx.api.FxToolkit.setupApplication;
 
 /**
- * Set of unit tests to test M3 implementations.
+ * Set of unit tests to test M4 implementations.
  *
  * @author Vipers
  * @version 1.0
