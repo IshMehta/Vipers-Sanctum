@@ -3,6 +3,7 @@ package controller;
 import components.Player;
 import javafx.application.Application;
 
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -75,8 +76,11 @@ public class ControllerT extends Application {
     private void goToConfigScreen() {
         ConfigurationScreen configScreen = new ConfigurationScreen();
         Button nextScreenButton = configScreen.getNextScreenButton();
-        nextScreenButton.setOnAction(e -> goToGameScreen(configScreen.getDifficulty(),
-                configScreen.getWeapon()));
+        nextScreenButton.setOnAction((ActionEvent event) -> {
+            player.addElement(configScreen.getWeapon());
+            player.setSelectedWeapon(configScreen.getWeapon());
+            goToGameScreen(configScreen.getDifficulty(), player.getSelectedWeapon());
+        });
         Scene scene = configScreen.showConfigScreen();
         mainWindow.setScene(scene);
         mainWindow.show();
@@ -103,7 +107,7 @@ public class ControllerT extends Application {
     }
 
     private void switchRoom() {
-        GameScreen room = new GameScreen(difficulty, weapon,
+        GameScreen room = new GameScreen(difficulty, player.getSelectedWeapon(),
                 roomsArray[currentRoomX][currentRoomY], player,
                 getMonstersDefeated(roomsArray[currentRoomX][currentRoomY]));
         Button buttonUp = room.getButtonUp();
