@@ -33,23 +33,35 @@ public class GameScreen {
 
     private final String difficulty;
     private String weapon;
-    private Button buttonUp = new Button("Up");
-    private Button buttonDown = new Button("Down");
-    private Button buttonLeft = new Button("L");
-    private Button buttonRight = new Button("R");
-    private Button buttonAttack = new Button("Attack");
-    private Button buttonRetreat = new Button("Retreat");
-    private Button buttonRestart = new Button("Restart");
-    private Button buttonConfirmKill = new Button("Confirm the Kill");
+    private final Button buttonUp = new Button("Up");
+    private final Button buttonDown = new Button("Down");
+    private final Button buttonLeft = new Button("L");
+    private final Button buttonRight = new Button("R");
+    private final Button buttonAttack = new Button("Attack");
+    private final Button buttonRetreat = new Button("Retreat");
+    private final Button buttonRestart = new Button("Restart");
+    private final Button buttonConfirmKill = new Button("Confirm the Kill");
+    private final Button buttonAccessInventory = new Button("Inventory");
+    private final Button backToGame = new Button("Return to game");
+    private VBox leftSide = new VBox();
+    private VBox rightSide = new VBox();
+    private VBox upSide = new VBox();
+    private VBox downSide = new VBox();
     private int room;
     private Monster currMonster;
     private Label monsterLabel = new Label();
     private Label playerLabel = new Label();
+    private Label weaponStatus;
+    private Label moneyStatus;
     private int attackindex = 0;
-    private Player player;
-    private BorderPane roomL;
     private boolean monsterDefeated;
+    private Player player;
+    private VBox inventoryScreen = new VBox();
+    private VBox inventoryFiller = new VBox();
+    private BorderPane roomL;
     private StackPane mainView;
+    private boolean isAttackOn;
+    private boolean isLuckyOn;
 
     public GameScreen(String selectedDifficulty, String selectedWeapons, int roomIndex,
                       Player playerIn, boolean monsterDefeatedIn) {
@@ -60,6 +72,8 @@ public class GameScreen {
         player = playerIn;
         buttonRestart.setVisible(false);
         monsterDefeated = monsterDefeatedIn;
+        isAttackOn = false;
+        isLuckyOn = false;
     }
 
     public Scene getScene() {
@@ -69,10 +83,7 @@ public class GameScreen {
 
         //Room Scene Set Up
         //Borders of the border pane will be Vbox's that house buttons
-        VBox leftSide = new VBox();
-        VBox rightSide = new VBox();
-        VBox upSide = new VBox();
-        VBox downSide = new VBox();
+
         leftSide.setStyle("-fx-background-color: #000000;");
         rightSide.setStyle("-fx-background-color: #000000;");
         upSide.setStyle("-fx-background-color: #000000;");
@@ -90,9 +101,9 @@ public class GameScreen {
         }
         Label currentRoom = new Label("Room: " + room);
         currentRoom.setId("roomStatus");
-        Label moneyStatus = new Label("Money: " + startingMoney);
+        moneyStatus = new Label("Money: " + startingMoney);
         moneyStatus.setId("moneyStatus");
-        Label weaponStatus = new Label("Weapon: " + weapon);
+        weaponStatus = new Label("Weapon: " + weapon);
         weaponStatus.setId("weaponStatus");
         weaponStatus.setFont(Font.font("Cambria", 32));
         moneyStatus.setFont(Font.font("Cambria", 32));
@@ -125,6 +136,8 @@ public class GameScreen {
         mainView.setAlignment(buttonAttack, Pos.BOTTOM_RIGHT);
         mainView.setAlignment(buttonRetreat, Pos.BOTTOM_LEFT);
         mainView.setAlignment(buttonConfirmKill, Pos.CENTER);
+        mainView.setAlignment(buttonAccessInventory, Pos.BOTTOM_CENTER);
+        buttonAccessInventory.setOnAction(e -> setInventory());
         StackPane.setMargin(monsterLabel, new Insets(20, 20, 20, 20));
         StackPane.setMargin(playerLabel, new Insets(20, 20, 20, 20));
         Image background = new Image("dungeonTest.jpg");
@@ -135,7 +148,7 @@ public class GameScreen {
                 new BackgroundSize(1200, 450, false, false, true, false));
         mainView.setBackground(new Background(dungeonBackground));
         mainView.getChildren().addAll(moneyStatus, weaponStatus, currentRoom, monsterLabel,
-                playerLabel, buttonAttack, buttonRetreat, buttonConfirmKill);
+                playerLabel, buttonAttack, buttonRetreat, buttonConfirmKill, buttonAccessInventory);
         buttonChecker();
         if (room != 9) {
             upSide.getChildren().add(buttonUp);
@@ -174,6 +187,167 @@ public class GameScreen {
 
     }
 
+    private void setInventory() {
+        roomL.setLeft(null);
+        roomL.setTop(null);
+        roomL.setRight(null);
+        roomL.setCenter(null);
+        roomL.setBottom(null);
+        inventoryFiller.setPrefWidth(800);
+        inventoryFiller.setBackground(new Background(new BackgroundFill(Color.rgb(0, 0, 0),
+                CornerRadii.EMPTY, Insets.EMPTY)));
+        inventoryScreen.setPrefWidth(480);
+        backToGame.setOnAction(e -> setGameScreen());
+        Label inventoryLabel = new Label("Inventory");
+        inventoryLabel.setFont(Font.font("Cambria", 48));
+        inventoryLabel.setBackground(new Background(
+                new BackgroundFill(Color.rgb(255, 255, 255, 0.7),
+                new CornerRadii(0.0), new Insets(0.0))));
+        inventoryLabel.setPadding(new Insets(10, 100, 10, 100));
+        inventoryFiller.setSpacing(100);
+        inventoryScreen.setSpacing(20);
+        inventoryFiller.getChildren().addAll(inventoryLabel, backToGame);
+        checkInventory();
+        inventoryFiller.setAlignment(Pos.CENTER);
+        inventoryScreen.setAlignment(Pos.CENTER);
+        roomL.setRight(inventoryScreen);
+        roomL.setLeft(inventoryFiller);
+    }
+
+    private void checkInventory() {
+        inventoryScreen.getChildren().clear();
+        if (player.getInventoryCount().get(0) != 0) {
+            Button selectKnife = new Button(Integer.toString(player.getInventoryCount().get(0)));
+            selectKnife.setOnAction(e -> {
+                weapon = "Knife";
+                player.setSelectedWeapon("Knife");
+                weaponStatus.setText("Weapon: " + weapon);
+            });
+            selectKnife.setFont(Font.font("Cambria", 32));
+            selectKnife.setPrefWidth(128);
+            selectKnife.setPrefHeight(72);
+            Image img = new Image("knifeWeapon.png");
+            ImageView view = new ImageView(img);
+            view.setFitHeight(60);
+            view.setPreserveRatio(true);
+            selectKnife.setGraphic(view);
+            inventoryScreen.getChildren().add(selectKnife);
+        }
+        if (player.getInventoryCount().get(1) != 0) {
+            Button selectMaul = new Button(Integer.toString(player.getInventoryCount().get(1)));
+            selectMaul.setOnAction(e -> {
+                weapon = "Maul";
+                player.setSelectedWeapon("Maul");
+                weaponStatus.setText("Weapon: " + weapon);
+            });
+            selectMaul.setFont(Font.font("Cambria", 32));
+            selectMaul.setPrefWidth(128);
+            selectMaul.setPrefHeight(72);
+            Image img = new Image("maulWeapon.png");
+            ImageView view = new ImageView(img);
+            view.setFitHeight(60);
+            view.setPreserveRatio(true);
+            selectMaul.setGraphic(view);
+            inventoryScreen.getChildren().add(selectMaul);
+        }
+        if (player.getInventoryCount().get(2) != 0) {
+            Button selectSword = new Button(Integer.toString(player.getInventoryCount().get(2)));
+            selectSword.setOnAction(e -> {
+                weapon = "Sword";
+                player.setSelectedWeapon("Sword");
+                weaponStatus.setText("Weapon: " + weapon);
+            });
+            selectSword.setFont(Font.font("Cambria", 32));
+            selectSword.setPrefWidth(128);
+            selectSword.setPrefHeight(72);
+            Image img = new Image("swordWeapon.png");
+            ImageView view = new ImageView(img);
+            view.setFitHeight(60);
+            view.setPreserveRatio(true);
+            selectSword.setGraphic(view);
+            inventoryScreen.getChildren().add(selectSword);
+        }
+        if (player.getInventoryCount().get(3) != 0) {
+            Button selectBow = new Button(Integer.toString(player.getInventoryCount().get(3)));
+            selectBow.setOnAction(e -> {
+                weapon = "Bow";
+                player.setSelectedWeapon("Bow");
+                weaponStatus.setText("Weapon: " + weapon);
+            });
+            selectBow.setFont(Font.font("Cambria", 32));
+            selectBow.setPrefWidth(128);
+            selectBow.setPrefHeight(72);
+            Image img = new Image("bowWeapon.png");
+            ImageView view = new ImageView(img);
+            view.setFitHeight(60);
+            view.setPreserveRatio(true);
+            selectBow.setGraphic(view);
+            inventoryScreen.getChildren().add(selectBow);
+        }
+        if (player.getInventoryCount().get(4) != 0) {
+            Button useAttack = new Button(Integer.toString(player.getInventoryCount().get(4)));
+            useAttack.setOnAction(e -> {
+                player.removeElement("Attack");
+                isAttackOn = true;
+                checkInventory();
+            });
+            useAttack.setFont(Font.font("Cambria", 32));
+            useAttack.setPrefWidth(128);
+            useAttack.setPrefHeight(72);
+            Image img = new Image("attackPotion.png");
+            ImageView view = new ImageView(img);
+            view.setFitHeight(60);
+            view.setPreserveRatio(true);
+            useAttack.setGraphic(view);
+            inventoryScreen.getChildren().add(useAttack);
+        }
+        if (player.getInventoryCount().get(5) != 0) {
+            Button useHealth = new Button(Integer.toString(player.getInventoryCount().get(5)));
+            useHealth.setOnAction(e -> {
+                player.removeElement("Health");
+                player.setPlayerHP(player.getPlayerHP() + 10);
+                playerLabel.setText("HP: " + player.getPlayerHP());
+                checkInventory();
+            });
+            useHealth.setFont(Font.font("Cambria", 32));
+            useHealth.setPrefWidth(128);
+            useHealth.setPrefHeight(72);
+            Image img = new Image("healthPotion.png");
+            ImageView view = new ImageView(img);
+            view.setFitHeight(60);
+            view.setPreserveRatio(true);
+            useHealth.setGraphic(view);
+            inventoryScreen.getChildren().add(useHealth);
+        }
+        if (player.getInventoryCount().get(6) != 0) {
+            Button useLucky = new Button(Integer.toString(player.getInventoryCount().get(6)));
+            useLucky.setOnAction(e -> {
+                player.removeElement("Lucky");
+                isLuckyOn = true;
+                checkInventory();
+            });
+            useLucky.setFont(Font.font("Cambria", 32));
+            useLucky.setPrefWidth(128);
+            useLucky.setPrefHeight(72);
+            Image img = new Image("luckyPotion.png");
+            ImageView view = new ImageView(img);
+            view.setFitHeight(60);
+            view.setPreserveRatio(true);
+            useLucky.setGraphic(view);
+            inventoryScreen.getChildren().add(useLucky);
+        }
+    }
+
+    private void setGameScreen() {
+        roomL.setTop(upSide);
+        roomL.setBottom(downSide);
+        roomL.setRight(rightSide);
+        roomL.setLeft(leftSide);
+        roomL.setCenter(mainView);
+        inventoryScreen.getChildren().clear();
+        inventoryFiller.getChildren().clear();
+    }
+
     private void buttonStyling() {
         buttonUp.setFont(Font.font("Cambria", 32));
         buttonUp.setPrefWidth(128);
@@ -193,12 +367,18 @@ public class GameScreen {
         buttonRetreat.setFont(Font.font("Cambria", 20));
         buttonRetreat.setPrefWidth(128);
         buttonRetreat.setPrefHeight(72);
+        buttonAccessInventory.setFont(Font.font("Cambria", 20));
+        buttonAccessInventory.setPrefWidth(120);
+        buttonAccessInventory.setPrefHeight(50);
         buttonConfirmKill.setFont(Font.font("Cambria", 20));
         buttonConfirmKill.setPrefWidth(300);
         buttonConfirmKill.setPrefHeight(72);
         buttonRestart.setFont(Font.font("Cambria", 40));
         buttonRestart.setPrefWidth(300);
         buttonRestart.setPrefHeight(150);
+        backToGame.setFont(Font.font("Cambria", 40));
+        backToGame.setPrefWidth(350);
+        backToGame.setPrefHeight(50);
     }
 
     private void buttonChecker() {
@@ -254,11 +434,17 @@ public class GameScreen {
         double randomGen = Math.random();
         switch (weapon) {
         case "Knife":
-            attackdmg = 5;
+            attackdmg = 5 * player.getInventoryCount().get(0);
+            if (isAttackOn) {
+                attackdmg += 5;
+            }
             currMonster.setMonsterHP(currMonster.getMonsterHP() - attackdmg);
             break;
         case "Maul":
-            attackdmg = 10;
+            attackdmg = 10 * player.getInventoryCount().get(0);
+            if (isAttackOn) {
+                attackdmg += 5;
+            }
             if (attackindex % 2 == 0) {
                 currMonster.setMonsterHP(currMonster.getMonsterHP() - attackdmg);
             } else {
@@ -266,9 +452,12 @@ public class GameScreen {
             }
             break;
         case "Sword":
-            attackdmg = 15;
+            attackdmg = 15 * player.getInventoryCount().get(0);
+            if (isAttackOn) {
+                attackdmg += 5;
+            }
             if (attackindex % 2 == 0) {
-                if (randomGen < .7) {
+                if (randomGen < .7 || isLuckyOn) {
                     currMonster.setMonsterHP(currMonster.getMonsterHP() - attackdmg);
                 } else {
                     System.out.println("The sword missed");
@@ -278,8 +467,11 @@ public class GameScreen {
             }
             break;
         case "Bow":
-            attackdmg = 10;
-            if (randomGen < .7) {
+            attackdmg = 10 * player.getInventoryCount().get(0);
+            if (isAttackOn) {
+                attackdmg += 5;
+            }
+            if (randomGen < .7 || isLuckyOn) {
                 currMonster.setMonsterHP(currMonster.getMonsterHP() - attackdmg);
             } else {
                 System.out.println("The bow missed");
@@ -419,6 +611,32 @@ public class GameScreen {
 
     private void checkHP() {
         if (currMonster.getMonsterHP() <= 0) {
+            switch (currMonster.getMonsterName()) {
+            case "Goblin":
+                int random = (int) (Math.random() * 6);
+                if (random == 0) {
+                    player.addElement("Attack");
+                } else if (random == 1) {
+                    player.addElement("Health");
+                } else if (random == 2) {
+                    player.addElement("Lucky");
+                }
+                break;
+            case "Goblin Commander":
+                random = (int) (Math.random() * 10);
+                if (random == 0) {
+                    player.addElement("Knife");
+                } else if (random == 1) {
+                    player.addElement("Maul");
+                } else if (random == 2) {
+                    player.addElement("Sword");
+                } else if (random == 3) {
+                    player.addElement("Bow");
+                }
+                break;
+            default:
+                break;
+            }
             monsterLabel.setText("The " + currMonster.getMonsterName() + " has fainted.\nHP: 0");
             buttonAttack.setDisable(true);
             buttonAttack.setVisible(false);
