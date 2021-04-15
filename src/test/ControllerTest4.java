@@ -125,7 +125,7 @@ public class ControllerTest4 extends ApplicationTest {
 
     // Dip's Test
     @Test
-    @Order(5)
+    @Order(6)
     public void testWeaponsExist() {
         clickOn("Play");
         clickOn("Medium");
@@ -137,9 +137,13 @@ public class ControllerTest4 extends ApplicationTest {
     }
 
     @Test
-    @Order(6)
+    @Order(7)
     public void testAddWeapons() {
-         clickOn("R");
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Maul");
+        clickOn("Next");
+        clickOn("R");
         clickOn("Attack");
         clickOn("Confirm the Kill");
         clickOn("Down");
@@ -147,10 +151,11 @@ public class ControllerTest4 extends ApplicationTest {
         clickOn("Confirm the Kill");
         clickOn("Inventory");
         clickOn("1");
-      
+    }
+
     //Ish Test
     @Test
-    @Order(6)
+    @Order(8)
     public void testInventoryStartKnife() {
         clickOn("Play");
         clickOn("Medium");
@@ -161,7 +166,7 @@ public class ControllerTest4 extends ApplicationTest {
     }
 
     @Test
-    @Order(7)
+    @Order(9)
     public void testInventoryStartMaul() {
         clickOn("Play");
         clickOn("Medium");
@@ -172,7 +177,7 @@ public class ControllerTest4 extends ApplicationTest {
     }
 
     @Test
-    @Order(8)
+    @Order(10)
     public void testInventoryStartSword() {
         clickOn("Play");
         clickOn("Medium");
@@ -183,7 +188,7 @@ public class ControllerTest4 extends ApplicationTest {
     }
 
     @Test
-    @Order(9)
+    @Order(11)
     public void testInventoryStartBow() {
         clickOn("Play");
         clickOn("Medium");
@@ -194,7 +199,7 @@ public class ControllerTest4 extends ApplicationTest {
     }
 
     @Test
-    @Order(10)
+    @Order(12)
     public void testSelectWeapons() {
         clickOn("Play");
         clickOn("Medium");
