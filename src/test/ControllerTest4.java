@@ -223,4 +223,40 @@ public class ControllerTest4 extends ApplicationTest {
         clickOn("Return to game");
         FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Sword"));
     }
+    
+    // Asha Test
+    @Test
+    @Order(13)
+    public void testPotionTypes() {
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Knife");
+        clickOn("Next");
+        clickOn("R");
+        clickOn("Inventory");
+        clickOn("#useHealth");
+        clickOn("#useAttack");
+        clickOn("Return to game");
+        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 60"));
+        clickOn("Attack");
+        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 57"));
+    }
+
+    @Test
+    @Order(14)
+    public void testInventoryHolds() {
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Knife");
+        clickOn("Next");
+        clickOn("Inventory");
+        FxAssert.verifyThat("#selectKnife", LabeledMatchers.hasText("2"));
+        FxAssert.verifyThat("#selectMaul", LabeledMatchers.hasText("1"));
+        FxAssert.verifyThat("#selectSword", LabeledMatchers.hasText("1"));
+        FxAssert.verifyThat("#selectBow", LabeledMatchers.hasText("1"));
+        FxAssert.verifyThat("#useAttack", LabeledMatchers.hasText("1"));
+        FxAssert.verifyThat("#useHealth", LabeledMatchers.hasText("1"));
+        FxAssert.verifyThat("#useLucky", LabeledMatchers.hasText("1"));
+
+    }
 }
