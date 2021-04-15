@@ -80,9 +80,23 @@ public class ControllerTest4 extends ApplicationTest {
         FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 60"));
     }
 
-    //Su Test
     @Test
     @Order(3)
+    public void testWeaponTypes() {
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Knife");
+        clickOn("Next");
+        clickOn("Inventory");
+        FxAssert.verifyThat("#selectBow", NodeMatchers.isVisible());
+        FxAssert.verifyThat("#selectMaul", NodeMatchers.isVisible());
+        FxAssert.verifyThat("#selectKnife", NodeMatchers.isVisible());
+        FxAssert.verifyThat("#selectSword", NodeMatchers.isVisible());
+    }
+
+    //Su Test
+    @Test
+    @Order(4)
     public void testInventoryExists() {
         clickOn("Play");
         clickOn("Medium");
@@ -96,7 +110,7 @@ public class ControllerTest4 extends ApplicationTest {
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     public void testPotionsExist() {
         clickOn("Play");
         clickOn("Medium");
@@ -111,6 +125,7 @@ public class ControllerTest4 extends ApplicationTest {
 
     //Ish Test
     @Test
+    @Order(6)
     public void testInventoryStartKnife() {
         clickOn("Play");
         clickOn("Medium");
@@ -121,6 +136,7 @@ public class ControllerTest4 extends ApplicationTest {
     }
 
     @Test
+    @Order(7)
     public void testInventoryStartMaul() {
         clickOn("Play");
         clickOn("Medium");
@@ -131,6 +147,7 @@ public class ControllerTest4 extends ApplicationTest {
     }
 
     @Test
+    @Order(8)
     public void testInventoryStartSword() {
         clickOn("Play");
         clickOn("Medium");
@@ -141,6 +158,7 @@ public class ControllerTest4 extends ApplicationTest {
     }
 
     @Test
+    @Order(9)
     public void testInventoryStartBow() {
         clickOn("Play");
         clickOn("Medium");
@@ -151,6 +169,7 @@ public class ControllerTest4 extends ApplicationTest {
     }
 
     @Test
+    @Order(10)
     public void testSelectWeapons() {
         clickOn("Play");
         clickOn("Medium");
