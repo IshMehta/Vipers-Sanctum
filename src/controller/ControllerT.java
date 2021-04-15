@@ -48,7 +48,6 @@ public class ControllerT extends Application {
         setRooms(8, 4, 3);
         setRooms(9, 4, 2);
         System.out.println(Arrays.deepToString(roomsArray));
-        player = new Player(50, null);
         WelcomeScreen welcomeScreen = new WelcomeScreen(width, height);
         Button startButton = welcomeScreen.getStartButton();
         startButton.setOnAction(e -> goToConfigScreen());
@@ -70,7 +69,7 @@ public class ControllerT extends Application {
         roomsAccessed = new boolean[9];
         monstersDefeated = new boolean[9];
         lastRoom = null;
-        player = new Player(100, null);
+        player = new Player(50, null);
         player.addElement("Knife");
         player.addElement("Maul");
         player.addElement("Sword");
@@ -323,12 +322,17 @@ public class ControllerT extends Application {
         this.monstersDefeated[monsterRoom - 1] = defeated;
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    public Player getPlayer() {
+        return player;
     }
 
     public int[][] getRoomsArray() {
         return roomsArray;
     }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
 }
 
