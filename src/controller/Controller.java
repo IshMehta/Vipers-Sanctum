@@ -2,7 +2,7 @@ package controller;
 
 import components.Player;
 import javafx.application.Application;
-
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -12,8 +12,6 @@ import view.GameScreen;
 import view.WelcomeScreen;
 import view.WinScreen;
 import java.util.Arrays;
-
-
 
 public class Controller extends Application {
     private Stage mainWindow;
@@ -59,14 +57,17 @@ public class Controller extends Application {
         roomsAccessed = new boolean[9];
         monstersDefeated = new boolean[9];
         lastRoom = null;
-        player = new Player(100);
+        player = new Player(100, null);
     }
 
     private void goToConfigScreen() {
         ConfigurationScreen configScreen = new ConfigurationScreen();
         Button nextScreenButton = configScreen.getNextScreenButton();
-        nextScreenButton.setOnAction(e -> goToGameScreen(configScreen.getDifficulty(),
-                configScreen.getWeapon()));
+        nextScreenButton.setOnAction((ActionEvent event) -> {
+            player.addElement(configScreen.getWeapon());
+            player.setSelectedWeapon(configScreen.getWeapon());
+            goToGameScreen(configScreen.getDifficulty(), player.getSelectedWeapon());
+        });
         Scene scene = configScreen.showConfigScreen();
         mainWindow.setScene(scene);
         mainWindow.show();
@@ -77,7 +78,8 @@ public class Controller extends Application {
         weapon = selectedWeapons;
         roomsAccessed[0] = true;
         GameScreen game = new GameScreen(selectedDifficulty,
-                selectedWeapons, 1, player, getMonstersDefeated(roomsArray[currentRoomX][currentRoomY]));
+                selectedWeapons, 1, player,
+                getMonstersDefeated(roomsArray[currentRoomX][currentRoomY]));
         Button buttonUp = game.getButtonUp();
         Button buttonDown = game.getButtonDown();
         Button buttonLeft = game.getButtonLeft();
@@ -92,7 +94,7 @@ public class Controller extends Application {
     }
 
     private void switchRoom() {
-        GameScreen room = new GameScreen(difficulty, weapon,
+        GameScreen room = new GameScreen(difficulty, player.getSelectedWeapon(),
                 roomsArray[currentRoomX][currentRoomY], player,
                 getMonstersDefeated(roomsArray[currentRoomX][currentRoomY]));
         Button buttonUp = room.getButtonUp();
