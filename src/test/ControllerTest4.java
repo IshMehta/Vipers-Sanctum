@@ -52,7 +52,18 @@ public class ControllerTest4 extends ApplicationTest {
     //Rahul Test
     @Test
     @Order(1)
-    public void sampleTest() {
-
+    public void testAttackPotion() {
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Knife");
+        clickOn("Next");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Inventory");
+        clickOn("#useAttack");
+        clickOn("Return to game");
+        clickOn("Attack");
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isInvisible());
     }
 }
