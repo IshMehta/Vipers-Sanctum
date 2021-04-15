@@ -109,4 +109,69 @@ public class ControllerTest4 extends ApplicationTest {
         clickOn("#useHealth");
     }
 
+    //Ish Test
+    @Test
+    public void testInventoryStartKnife() {
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Knife");
+        clickOn("Next");
+        clickOn("Inventory");
+        FxAssert.verifyThat("#selectKnife", LabeledMatchers.hasText("2"));
+    }
+
+    @Test
+    public void testInventoryStartMaul() {
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Maul");
+        clickOn("Next");
+        clickOn("Inventory");
+        FxAssert.verifyThat("#selectMaul", LabeledMatchers.hasText("2"));
+    }
+
+    @Test
+    public void testInventoryStartSword() {
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Sword");
+        clickOn("Next");
+        clickOn("Inventory");
+        FxAssert.verifyThat("#selectSword", LabeledMatchers.hasText("2"));
+    }
+
+    @Test
+    public void testInventoryStartBow() {
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Bow");
+        clickOn("Next");
+        clickOn("Inventory");
+        FxAssert.verifyThat("#selectBow", LabeledMatchers.hasText("2"));
+    }
+
+    @Test
+    public void testSelectWeapons() {
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Bow");
+        clickOn("Next");
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Bow"));
+        clickOn("Inventory");
+        FxAssert.verifyThat("#selectBow", LabeledMatchers.hasText("2"));
+        FxAssert.verifyThat("#selectMaul", LabeledMatchers.hasText("1"));
+        clickOn("#selectMaul");
+        clickOn("Return to game");
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Maul"));
+        clickOn("Inventory");
+        FxAssert.verifyThat("#selectKnife", LabeledMatchers.hasText("1"));
+        clickOn("#selectKnife");
+        clickOn("Return to game");
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Knife"));
+        clickOn("Inventory");
+        FxAssert.verifyThat("#selectSword", LabeledMatchers.hasText("1"));
+        clickOn("#selectSword");
+        clickOn("Return to game");
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Sword"));
+    }
 }
