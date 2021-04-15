@@ -109,4 +109,34 @@ public class ControllerTest4 extends ApplicationTest {
         clickOn("#useHealth");
     }
 
+    // Dip's Test
+    @Test
+    @Order(5)
+    public void testWeaponsExist() {
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Maul");
+        clickOn("Next");
+        clickOn("Inventory");
+        clickOn("2");
+        clickOn("1");
+    }
+
+    @Test
+    @Order(6)
+    public void testAddWeapons() {
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Maul");
+        clickOn("Next");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Confirm the Kill");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Confirm the Kill");
+        clickOn("Inventory");
+        clickOn("1");
+
+    }
 }
