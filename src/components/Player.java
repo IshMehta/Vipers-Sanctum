@@ -14,12 +14,12 @@ public class Player {
         selectedWeapon = weapon;
         inventoryCount = new ArrayList<>(0);
         inventoryCount.add(0);
-        inventoryCount.add(1);
-        inventoryCount.add(1);
-        inventoryCount.add(1);
-        inventoryCount.add(1);
-        inventoryCount.add(1);
-        inventoryCount.add(2);
+        inventoryCount.add(0);
+        inventoryCount.add(0);
+        inventoryCount.add(0);
+        inventoryCount.add(0);
+        inventoryCount.add(0);
+        inventoryCount.add(0);
     }
 
     public int getPlayerHP() {

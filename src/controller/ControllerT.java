@@ -71,6 +71,13 @@ public class ControllerT extends Application {
         monstersDefeated = new boolean[9];
         lastRoom = null;
         player = new Player(100, null);
+        player.addElement("Knife");
+        player.addElement("Maul");
+        player.addElement("Sword");
+        player.addElement("Bow");
+        player.addElement("Attack");
+        player.addElement("Health");
+        player.addElement("Lucky");
     }
 
     private void goToConfigScreen() {
