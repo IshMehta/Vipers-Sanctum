@@ -101,11 +101,22 @@ public class Controller extends Application {
         Button buttonDown = room.getButtonDown();
         Button buttonLeft = room.getButtonLeft();
         Button buttonRight = room.getButtonRight();
-        buttonUp.setOnAction(e -> roomManager("Up"));
-        buttonDown.setOnAction(e -> roomManager("Down"));
-        buttonLeft.setOnAction(e -> roomManager("Left"));
-        buttonRight.setOnAction(e ->
-                roomManager("Right"));
+        buttonUp.setOnAction(e -> {
+            room.pickUpRemove();
+            roomManager("Up");
+        });
+        buttonDown.setOnAction(e -> {
+            room.pickUpRemove();
+            roomManager("Down");
+        });
+        buttonLeft.setOnAction(e -> {
+            room.pickUpRemove();
+            roomManager("Left");
+        });
+        buttonRight.setOnAction(e -> {
+            room.pickUpRemove();
+            roomManager("Right");
+        });
         Button buttonRestart = room.getButtonRestart();
         buttonRestart.setOnAction(e -> initWelcomeScreen());
         Button buttonRetreat = room.getButtonRetreat();

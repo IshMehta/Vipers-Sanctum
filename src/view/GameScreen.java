@@ -43,6 +43,13 @@ public class GameScreen {
     private final Button buttonConfirmKill = new Button("Confirm the Kill");
     private final Button buttonAccessInventory = new Button("Inventory");
     private final Button backToGame = new Button("Return to game");
+    private final Button pickUpAttack = new Button();
+    private final Button pickUpHealth = new Button();
+    private final Button pickUpLucky = new Button();
+    private final Button pickUpKnife = new Button();
+    private final Button pickUpMaul = new Button();
+    private final Button pickUpSword = new Button();
+    private final Button pickUpBow = new Button();
     private VBox leftSide = new VBox();
     private VBox rightSide = new VBox();
     private VBox upSide = new VBox();
@@ -386,6 +393,72 @@ public class GameScreen {
         backToGame.setFont(Font.font("Cambria", 40));
         backToGame.setPrefWidth(350);
         backToGame.setPrefHeight(50);
+
+        pickUpKnife.setPrefWidth(128);
+        pickUpKnife.setPrefHeight(72);
+        Image knifeI = new Image("knifeWeapon.png");
+        ImageView knifeView = new ImageView(knifeI);
+        knifeView.setFitHeight(60);
+        knifeView.setPreserveRatio(true);
+        pickUpKnife.setGraphic(knifeView);
+
+        pickUpMaul.setPrefWidth(128);
+        pickUpMaul.setPrefHeight(72);
+        Image maulI = new Image("maulWeapon.png");
+        ImageView maulView = new ImageView(maulI);
+        maulView.setFitHeight(60);
+        maulView.setPreserveRatio(true);
+        pickUpMaul.setGraphic(maulView);
+
+        pickUpSword.setPrefWidth(128);
+        pickUpSword.setPrefHeight(72);
+        Image swordI = new Image("swordWeapon.png");
+        ImageView swordView = new ImageView(swordI);
+        swordView.setFitHeight(60);
+        swordView.setPreserveRatio(true);
+        pickUpSword.setGraphic(swordView);
+
+        pickUpBow.setPrefWidth(128);
+        pickUpBow.setPrefHeight(72);
+        Image bowI = new Image("bowWeapon.png");
+        ImageView bowView = new ImageView(bowI);
+        bowView.setFitHeight(60);
+        bowView.setPreserveRatio(true);
+        pickUpBow.setGraphic(bowView);
+
+        pickUpAttack.setPrefWidth(128);
+        pickUpAttack.setPrefHeight(72);
+        Image attackI = new Image("attackPotion.png");
+        ImageView attackView = new ImageView(attackI);
+        attackView.setFitHeight(60);
+        attackView.setPreserveRatio(true);
+        pickUpAttack.setGraphic(attackView);
+
+        pickUpHealth.setPrefWidth(128);
+        pickUpHealth.setPrefHeight(72);
+        Image healthI = new Image("healthPotion.png");
+        ImageView healthView = new ImageView(healthI);
+        healthView.setFitHeight(60);
+        healthView.setPreserveRatio(true);
+        pickUpHealth.setGraphic(healthView);
+
+        pickUpLucky.setPrefWidth(128);
+        pickUpLucky.setPrefHeight(72);
+        Image luckyI = new Image("luckyPotion.png");
+        ImageView luckyView = new ImageView(luckyI);
+        luckyView.setFitHeight(60);
+        luckyView.setPreserveRatio(true);
+        pickUpLucky.setGraphic(luckyView);
+    }
+
+    public void pickUpRemove() {
+        pickUpHealth.setVisible(false);
+        pickUpAttack.setVisible(false);
+        pickUpLucky.setVisible(false);
+        pickUpKnife.setVisible(false);
+        pickUpSword.setVisible(false);
+        pickUpMaul.setVisible(false);
+        pickUpBow.setVisible(false);
     }
 
     private void buttonChecker() {
@@ -622,23 +695,65 @@ public class GameScreen {
             case "Goblin":
                 int random = (int) (Math.random() * 6);
                 if (random == 0) {
-                    player.addElement("Attack");
+                    pickUpAttack.setVisible(true);
+                    mainView.setAlignment(pickUpAttack, Pos.CENTER_RIGHT);
+                    mainView.getChildren().add(pickUpAttack);
+                    pickUpAttack.setOnAction(e -> {
+                        player.addElement("Attack");
+                        pickUpAttack.setVisible(false);
+                    });
                 } else if (random == 1) {
-                    player.addElement("Health");
+                    pickUpHealth.setVisible(true);
+                    mainView.setAlignment(pickUpHealth, Pos.CENTER_RIGHT);
+                    mainView.getChildren().add(pickUpHealth);
+                    pickUpHealth.setOnAction(e -> {
+                        player.addElement("Health");
+                        pickUpHealth.setVisible(false);
+                    });
                 } else if (random == 2) {
-                    player.addElement("Lucky");
+                    pickUpLucky.setVisible(true);
+                    mainView.setAlignment(pickUpLucky, Pos.CENTER_RIGHT);
+                    mainView.getChildren().add(pickUpLucky);
+                    pickUpLucky.setOnAction(e -> {
+                        player.addElement("Lucky");
+                        pickUpLucky.setVisible(false);
+                    });
                 }
                 break;
             case "Goblin Commander":
                 random = (int) (Math.random() * 10);
                 if (random == 0) {
-                    player.addElement("Knife");
+                    pickUpKnife.setVisible(true);
+                    mainView.setAlignment(pickUpKnife, Pos.CENTER_RIGHT);
+                    mainView.getChildren().add(pickUpKnife);
+                    pickUpKnife.setOnAction(e -> {
+                        player.addElement("Knife");
+                        pickUpKnife.setVisible(false);
+                    });
                 } else if (random == 1) {
-                    player.addElement("Maul");
+                    pickUpMaul.setVisible(true);
+                    mainView.setAlignment(pickUpMaul, Pos.CENTER_RIGHT);
+                    mainView.getChildren().add(pickUpMaul);
+                    pickUpMaul.setOnAction(e -> {
+                        player.addElement("Maul");
+                        pickUpMaul.setVisible(false);
+                    });
                 } else if (random == 2) {
-                    player.addElement("Sword");
+                    pickUpSword.setVisible(true);
+                    mainView.setAlignment(pickUpSword, Pos.CENTER_RIGHT);
+                    mainView.getChildren().add(pickUpSword);
+                    pickUpSword.setOnAction(e -> {
+                        player.addElement("Sword");
+                        pickUpSword.setVisible(false);
+                    });
                 } else if (random == 3) {
-                    player.addElement("Bow");
+                    pickUpBow.setVisible(true);
+                    mainView.setAlignment(pickUpBow, Pos.CENTER_RIGHT);
+                    mainView.getChildren().add(pickUpBow);
+                    pickUpBow.setOnAction(e -> {
+                        player.addElement("Bow");
+                        pickUpBow.setVisible(false);
+                    });
                 }
                 break;
             default:
