@@ -66,4 +66,18 @@ public class ControllerTest4 extends ApplicationTest {
         clickOn("Attack");
         FxAssert.verifyThat("#monsterLabel", NodeMatchers.isInvisible());
     }
+
+    @Test
+    @Order(2)
+    public void testHealthPotion() {
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Knife");
+        clickOn("Next");
+        clickOn("Inventory");
+        clickOn("#useHealth");
+        clickOn("Return to game");
+        FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 60"));
+    }
+
 }
