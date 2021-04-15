@@ -1,3 +1,4 @@
+import components.Player;
 import controller.ControllerT;
 import javafx.stage.Stage;
 
@@ -26,6 +27,9 @@ import static org.testfx.api.FxToolkit.setupApplication;
  */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ControllerTest4 extends ApplicationTest {
+
+    private Player testPlayer;
+
     @BeforeAll
     public static void setupSpec() throws Exception {
         registerPrimaryStage();
@@ -41,7 +45,7 @@ public class ControllerTest4 extends ApplicationTest {
     public void start(Stage primaryStage) throws Exception {
         ControllerT controller = new ControllerT();
         controller.start(primaryStage);
-
+        testPlayer = controller.getPlayer();
     }
 
     //tests go here

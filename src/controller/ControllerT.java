@@ -322,12 +322,17 @@ public class ControllerT extends Application {
         this.monstersDefeated[monsterRoom - 1] = defeated;
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    public Player getPlayer() {
+        return player;
     }
 
     public int[][] getRoomsArray() {
         return roomsArray;
     }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
 }
 

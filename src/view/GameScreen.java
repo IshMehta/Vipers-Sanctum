@@ -218,6 +218,7 @@ public class GameScreen {
         inventoryScreen.getChildren().clear();
         if (player.getInventoryCount().get(0) != 0) {
             Button selectKnife = new Button(Integer.toString(player.getInventoryCount().get(0)));
+            selectKnife.setId("selectKnife");
             selectKnife.setOnAction(e -> {
                 weapon = "Knife";
                 player.setSelectedWeapon("Knife");
@@ -235,6 +236,7 @@ public class GameScreen {
         }
         if (player.getInventoryCount().get(1) != 0) {
             Button selectMaul = new Button(Integer.toString(player.getInventoryCount().get(1)));
+            selectMaul.setId("selectMaul");
             selectMaul.setOnAction(e -> {
                 weapon = "Maul";
                 player.setSelectedWeapon("Maul");
@@ -252,6 +254,7 @@ public class GameScreen {
         }
         if (player.getInventoryCount().get(2) != 0) {
             Button selectSword = new Button(Integer.toString(player.getInventoryCount().get(2)));
+            selectSword.setId("selectSword");
             selectSword.setOnAction(e -> {
                 weapon = "Sword";
                 player.setSelectedWeapon("Sword");
@@ -269,6 +272,7 @@ public class GameScreen {
         }
         if (player.getInventoryCount().get(3) != 0) {
             Button selectBow = new Button(Integer.toString(player.getInventoryCount().get(3)));
+            selectBow.setId("selectBow");
             selectBow.setOnAction(e -> {
                 weapon = "Bow";
                 player.setSelectedWeapon("Bow");
@@ -286,6 +290,7 @@ public class GameScreen {
         }
         if (player.getInventoryCount().get(4) != 0) {
             Button useAttack = new Button(Integer.toString(player.getInventoryCount().get(4)));
+            useAttack.setId("useAttack");
             useAttack.setOnAction(e -> {
                 player.removeElement("Attack");
                 isAttackOn = true;
@@ -303,6 +308,7 @@ public class GameScreen {
         }
         if (player.getInventoryCount().get(5) != 0) {
             Button useHealth = new Button(Integer.toString(player.getInventoryCount().get(5)));
+            useHealth.setId("useHealth");
             useHealth.setOnAction(e -> {
                 player.removeElement("Health");
                 player.setPlayerHP(player.getPlayerHP() + 10);
@@ -321,6 +327,7 @@ public class GameScreen {
         }
         if (player.getInventoryCount().get(6) != 0) {
             Button useLucky = new Button(Integer.toString(player.getInventoryCount().get(6)));
+            useLucky.setId("useLucky");
             useLucky.setOnAction(e -> {
                 player.removeElement("Lucky");
                 isLuckyOn = true;
