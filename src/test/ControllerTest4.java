@@ -80,9 +80,23 @@ public class ControllerTest4 extends ApplicationTest {
         FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 60"));
     }
 
-    //Su Test
     @Test
     @Order(3)
+    public void testWeaponTypes() {
+        clickOn("Play");
+        clickOn("Easy");
+        clickOn("Knife");
+        clickOn("Next");
+        clickOn("Inventory");
+        FxAssert.verifyThat("#selectBow", NodeMatchers.isVisible());
+        FxAssert.verifyThat("#selectMaul", NodeMatchers.isVisible());
+        FxAssert.verifyThat("#selectKnife", NodeMatchers.isVisible());
+        FxAssert.verifyThat("#selectSword", NodeMatchers.isVisible());
+    }
+
+    //Su Test
+    @Test
+    @Order(4)
     public void testInventoryExists() {
         clickOn("Play");
         clickOn("Medium");
@@ -96,7 +110,7 @@ public class ControllerTest4 extends ApplicationTest {
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     public void testPotionsExist() {
         clickOn("Play");
         clickOn("Medium");
@@ -125,11 +139,7 @@ public class ControllerTest4 extends ApplicationTest {
     @Test
     @Order(6)
     public void testAddWeapons() {
-        clickOn("Play");
-        clickOn("Medium");
-        clickOn("Maul");
-        clickOn("Next");
-        clickOn("R");
+         clickOn("R");
         clickOn("Attack");
         clickOn("Confirm the Kill");
         clickOn("Down");
@@ -137,6 +147,75 @@ public class ControllerTest4 extends ApplicationTest {
         clickOn("Confirm the Kill");
         clickOn("Inventory");
         clickOn("1");
+      
+    //Ish Test
+    @Test
+    @Order(6)
+    public void testInventoryStartKnife() {
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Knife");
+        clickOn("Next");
+        clickOn("Inventory");
+        FxAssert.verifyThat("#selectKnife", LabeledMatchers.hasText("2"));
+    }
 
+    @Test
+    @Order(7)
+    public void testInventoryStartMaul() {
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Maul");
+        clickOn("Next");
+        clickOn("Inventory");
+        FxAssert.verifyThat("#selectMaul", LabeledMatchers.hasText("2"));
+    }
+
+    @Test
+    @Order(8)
+    public void testInventoryStartSword() {
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Sword");
+        clickOn("Next");
+        clickOn("Inventory");
+        FxAssert.verifyThat("#selectSword", LabeledMatchers.hasText("2"));
+    }
+
+    @Test
+    @Order(9)
+    public void testInventoryStartBow() {
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Bow");
+        clickOn("Next");
+        clickOn("Inventory");
+        FxAssert.verifyThat("#selectBow", LabeledMatchers.hasText("2"));
+    }
+
+    @Test
+    @Order(10)
+    public void testSelectWeapons() {
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Bow");
+        clickOn("Next");
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Bow"));
+        clickOn("Inventory");
+        FxAssert.verifyThat("#selectBow", LabeledMatchers.hasText("2"));
+        FxAssert.verifyThat("#selectMaul", LabeledMatchers.hasText("1"));
+        clickOn("#selectMaul");
+        clickOn("Return to game");
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Maul"));
+        clickOn("Inventory");
+        FxAssert.verifyThat("#selectKnife", LabeledMatchers.hasText("1"));
+        clickOn("#selectKnife");
+        clickOn("Return to game");
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Knife"));
+        clickOn("Inventory");
+        FxAssert.verifyThat("#selectSword", LabeledMatchers.hasText("1"));
+        clickOn("#selectSword");
+        clickOn("Return to game");
+        FxAssert.verifyThat("#weaponStatus", LabeledMatchers.hasText("Weapon: Sword"));
     }
 }
