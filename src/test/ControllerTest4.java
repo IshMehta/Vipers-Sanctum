@@ -80,4 +80,33 @@ public class ControllerTest4 extends ApplicationTest {
         FxAssert.verifyThat("#playerLabel", LabeledMatchers.hasText("HP: 60"));
     }
 
+    //Su Test
+    @Test
+    @Order(3)
+    public void testInventoryExists() {
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Maul");
+        clickOn("Next");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Inventory");
+        clickOn("Return to game");
+    }
+
+    @Test
+    @Order(4)
+    public void testPotionsExist() {
+        clickOn("Play");
+        clickOn("Medium");
+        clickOn("Maul");
+        clickOn("Next");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Inventory");
+        clickOn("#useHealth");
+    }
+
 }
