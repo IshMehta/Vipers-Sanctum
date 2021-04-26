@@ -65,7 +65,7 @@
                   <Font name="Stencil" size="32.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" onAction="#goToInventory" prefHeight="50.0" prefWidth="128.0" text="Inventory" StackPane.alignment="BOTTOM_CENTER">
+            <Button fx:id="buttonInventory" mnemonicParsing="false" onAction="#goToInventory" prefHeight="50.0" prefWidth="128.0" text="Inventory" StackPane.alignment="BOTTOM_CENTER">
                <font>
                   <Font name="Stencil" size="18.0" />
                </font>

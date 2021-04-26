@@ -42,6 +42,7 @@ public class GameScreenController implements Initializable {
     @FXML private Button buttonRetreat;
     @FXML private Button buttonAttack;
     @FXML private Button buttonConfirmKill;
+    @FXML private Button buttonInventory;
 
     @FXML private Label playerLabel;
     @FXML private Label monsterLabel;
@@ -58,7 +59,7 @@ public class GameScreenController implements Initializable {
     private Dungeon dungeon;
     private int attackindex;
 
-    public void initData(Player player, Dungeon dungeon, Monster monster) {
+    public void initData(Player player, Dungeon dungeon, Monster monster) throws IOException {
         this.player = player;
         this.dungeon = dungeon;
         this.roomsArray = dungeon.getRoomsArray();
@@ -103,10 +104,9 @@ public class GameScreenController implements Initializable {
 
     private void setPlayer() {
         this.playerLabel.setText("HP: " + this.player.getPlayerHP());
-        checkHP();
     }
 
-    private void setMonster() {
+    private void setMonster() throws IOException {
         if (roomsArray[player.getPlayerX()][player.getPlayerY()] <= 1) {
             this.monster = null;
             this.monsterLabel.setVisible(false);
@@ -198,7 +198,7 @@ public class GameScreenController implements Initializable {
         this.roomNoLabel.setText("Room: " + roomsArray[player.getPlayerX()][player.getPlayerY()]);
     }
 
-    public void attackButtonPressed(ActionEvent actionEvent) {
+    public void attackButtonPressed(ActionEvent actionEvent) throws IOException {
         int attackdmg;
         double randomGen = Math.random();
         switch (this.player.getSelectedWeapon()) {
@@ -268,7 +268,7 @@ public class GameScreenController implements Initializable {
         //cleanup
     }
 
-    private void checkHP() {
+    private void checkHP() throws IOException {
         if (this.monster == null) {
             buttonAttack.setVisible(false);
             buttonRetreat.setVisible(false);
@@ -342,6 +342,13 @@ public class GameScreenController implements Initializable {
             buttonConfirmKill.setVisible(true);
             monsterLabel.setVisible(false);
             setAnimations(false, false);
+            if (roomsArray[player.getPlayerX()][player.getPlayerY()] == 9) {
+                buttonLeft.setVisible(false);
+                buttonDown.setVisible(false);
+                buttonUp.setVisible(false);
+                buttonConfirmKill.setVisible(false);
+                buttonInventory.setVisible(false);
+            }
         }
         if (this.player.getPlayerHP() <= 0) {
             goToGameOver();
@@ -411,6 +418,10 @@ public class GameScreenController implements Initializable {
             }
             break;
         case "R":
+            if (roomsArray[player.getPlayerX()][player.getPlayerY()] == 9) {
+                goToWin();
+                return;
+            }
             if (player.getPlayerX() == 4) {
                 Alert invalidRoom = new Alert(Alert.AlertType.WARNING);
                 invalidRoom.setContentText("You are at the edge of "
@@ -482,6 +493,9 @@ public class GameScreenController implements Initializable {
 
         //This line gets the Stage information
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        if (window == null) {
+            return;
+        }
         window.setScene(gameScreenScene);
         window.show();
     }
@@ -502,8 +516,42 @@ public class GameScreenController implements Initializable {
         window.show();
     }
 
-    private void goToGameOver() {
-        //go game over
+    private void goToWin() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../resources/endGameScreen.fxml"));
+        Parent endGameScreenParent = loader.load();
+        Scene endGameScreenScene = new Scene(endGameScreenParent);
+
+        //access the controller and call a method
+        EndGameController controller = loader.getController();
+        controller.initData(true);
+
+        //This line gets the Stage information
+        Stage window = (Stage) buttonUp.getScene().getWindow();
+        if (window == null) {
+            return;
+        }
+        window.setScene(endGameScreenScene);
+        window.show();
+    }
+
+    private void goToGameOver() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../resources/endGameScreen.fxml"));
+        Parent endGameScreenParent = loader.load();
+        Scene endGameScreenScene = new Scene(endGameScreenParent);
+
+        //access the controller and call a method
+        EndGameController controller = loader.getController();
+        controller.initData(false);
+
+        //This line gets the Stage information
+        Stage window = (Stage) buttonUp.getScene().getWindow();
+        if (window == null) {
+            return;
+        }
+        window.setScene(endGameScreenScene);
+        window.show();
     }
 
     public void confirmedButtonPressed(ActionEvent actionEvent) {
