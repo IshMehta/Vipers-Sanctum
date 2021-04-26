@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -202,52 +201,56 @@ public class GameScreenController implements Initializable {
         int attackdmg;
         double randomGen = Math.random();
         switch (this.player.getSelectedWeapon()) {
-            case "Knife":
-                attackdmg = 5 * player.getInventoryCount().get(0);
-                if (this.player.isAttackOn()) {
-                    attackdmg += 5;
-                }
+        case "Knife":
+            attackdmg = 5 * player.getInventoryCount().get(0);
+            if (this.player.isAttackOn()) {
+                attackdmg += 5;
+            }
+            player.setTotalDmgDealt(player.getTotalDmgDealt() + attackdmg);
+            this.monster.setMonsterHP(this.monster.getMonsterHP() - attackdmg);
+            break;
+        case "Maul":
+            attackdmg = 10 * player.getInventoryCount().get(0);
+            if (this.player.isAttackOn()) {
+                attackdmg += 5;
+            }
+            if (attackindex % 2 == 0) {
+                player.setTotalDmgDealt(player.getTotalDmgDealt() + attackdmg);
                 this.monster.setMonsterHP(this.monster.getMonsterHP() - attackdmg);
-                break;
-            case "Maul":
-                attackdmg = 10 * player.getInventoryCount().get(0);
-                if (this.player.isAttackOn()) {
-                    attackdmg += 5;
-                }
-                if (attackindex % 2 == 0) {
-                    this.monster.setMonsterHP(this.monster.getMonsterHP() - attackdmg);
-                } else {
-                    System.out.println("Weapon is on cooldown");
-                }
-                break;
-            case "Sword":
-                attackdmg = 15 * player.getInventoryCount().get(0);
-                if (this.player.isAttackOn()) {
-                    attackdmg += 5;
-                }
-                if (attackindex % 2 == 0) {
-                    if (randomGen < .7 || this.player.isLuckyOn()) {
-                        this.monster.setMonsterHP(this.monster.getMonsterHP() - attackdmg);
-                    } else {
-                        System.out.println("The sword missed");
-                    }
-                } else {
-                    System.out.println("Weapon is on cooldown");
-                }
-                break;
-            case "Bow":
-                attackdmg = 10 * player.getInventoryCount().get(0);
-                if (this.player.isAttackOn()) {
-                    attackdmg += 5;
-                }
+            } else {
+                System.out.println("Weapon is on cooldown");
+            }
+            break;
+        case "Sword":
+            attackdmg = 15 * player.getInventoryCount().get(0);
+            if (this.player.isAttackOn()) {
+                attackdmg += 5;
+            }
+            if (attackindex % 2 == 0) {
                 if (randomGen < .7 || this.player.isLuckyOn()) {
+                    player.setTotalDmgDealt(player.getTotalDmgDealt() + attackdmg);
                     this.monster.setMonsterHP(this.monster.getMonsterHP() - attackdmg);
                 } else {
-                    System.out.println("The bow missed");
+                    System.out.println("The sword missed");
                 }
-                break;
-            default:
-                break;
+            } else {
+                System.out.println("Weapon is on cooldown");
+            }
+            break;
+        case "Bow":
+            attackdmg = 10 * player.getInventoryCount().get(0);
+            if (this.player.isAttackOn()) {
+                attackdmg += 5;
+            }
+            if (randomGen < .7 || this.player.isLuckyOn()) {
+                player.setTotalDmgDealt(player.getTotalDmgDealt() + attackdmg);
+                this.monster.setMonsterHP(this.monster.getMonsterHP() - attackdmg);
+            } else {
+                System.out.println("The bow missed");
+            }
+            break;
+        default:
+            break;
         }
         switch (this.monster.getMonsterName()) {
             case "Goblin":
@@ -333,6 +336,7 @@ public class GameScreenController implements Initializable {
             default:
                 break;
             }
+            player.setTotalMonstersKilled(player.getTotalMonstersKilled() + 1);
             buttonAttack.setVisible(false);
             buttonRetreat.setVisible(false);
             buttonUp.setVisible(true);
@@ -349,17 +353,27 @@ public class GameScreenController implements Initializable {
                 buttonConfirmKill.setVisible(false);
                 buttonInventory.setVisible(false);
             }
+            if (roomsArray[player.getPlayerX()][player.getPlayerY()] == 4 ||
+                    roomsArray[player.getPlayerX()][player.getPlayerY()] == 8) {
+                this.monstersDefeated[this.roomsArray[this.player.getPlayerX()][this.player.getPlayerY()] - 1] = true;
+                this.buttonConfirmKill.setVisible(false);
+                goToChallenge();
+            }
         }
         if (this.player.getPlayerHP() <= 0) {
             goToGameOver();
         }
     }
 
-    public void retreatButtonPressed(ActionEvent actionEvent) {
+    public void retreatButtonPressed(ActionEvent actionEvent) throws IOException {
+        changeRoom(actionEvent);
     }
 
     public void changeRoom(ActionEvent actionEvent) throws IOException {
         String direction = ((Button) actionEvent.getSource()).getText();
+        if (direction.equals("Retreat")) {
+            direction = dungeon.getLastDirection();
+        }
         switch (direction) {
         case "Up":
             if (player.getPlayerY() == 0) {
@@ -388,6 +402,7 @@ public class GameScreenController implements Initializable {
                 player.setPlayerY(player.getPlayerY()+1);
                 return;
             }
+            dungeon.setLastDirection("Down");
             break;
         case "Down":
             if (player.getPlayerY() == 4) {
@@ -416,6 +431,7 @@ public class GameScreenController implements Initializable {
                 player.setPlayerY(player.getPlayerY()-1);
                 return;
             }
+            dungeon.setLastDirection("Up");
             break;
         case "R":
             if (roomsArray[player.getPlayerX()][player.getPlayerY()] == 9) {
@@ -448,6 +464,7 @@ public class GameScreenController implements Initializable {
                 player.setPlayerY(player.getPlayerX()-1);
                 return;
             }
+            dungeon.setLastDirection("L");
             break;
         case "L":
             if (player.getPlayerX() == 0) {
@@ -476,6 +493,7 @@ public class GameScreenController implements Initializable {
                 player.setPlayerY(player.getPlayerX()+1);
                 return;
             }
+            dungeon.setLastDirection("R");
             break;
         default:
             break;
@@ -524,7 +542,7 @@ public class GameScreenController implements Initializable {
 
         //access the controller and call a method
         EndGameController controller = loader.getController();
-        controller.initData(true);
+        controller.initData(true, this.player);
 
         //This line gets the Stage information
         Stage window = (Stage) buttonUp.getScene().getWindow();
@@ -543,7 +561,7 @@ public class GameScreenController implements Initializable {
 
         //access the controller and call a method
         EndGameController controller = loader.getController();
-        controller.initData(false);
+        controller.initData(false, this.player);
 
         //This line gets the Stage information
         Stage window = (Stage) buttonUp.getScene().getWindow();
@@ -551,6 +569,25 @@ public class GameScreenController implements Initializable {
             return;
         }
         window.setScene(endGameScreenScene);
+        window.show();
+    }
+
+    private void goToChallenge() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../resources/challengeRoomScreen.fxml"));
+        Parent challengeRoomScreenParent = loader.load();
+        Scene challengeRoomScreenScene = new Scene(challengeRoomScreenParent);
+
+        //access the controller and call a method
+        ChallengeRoomController controller = loader.getController();
+        controller.initData(this.player, this.dungeon, this.monster);
+
+        //This line gets the Stage information
+        Stage window = (Stage) buttonUp.getScene().getWindow();
+        if (window == null) {
+            return;
+        }
+        window.setScene(challengeRoomScreenScene);
         window.show();
     }
 

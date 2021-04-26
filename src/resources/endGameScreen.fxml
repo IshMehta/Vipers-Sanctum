@@ -18,17 +18,17 @@
                   <Font name="Stencil" size="60.0" />
                </font>
             </Label>
-            <Label text="Time Taken: ">
+            <Label fx:id="labelTime" text="Time Taken: ">
                <font>
                   <Font name="Stencil" size="26.0" />
                </font>
             </Label>
-            <Label text="Total Damage Done: ">
+            <Label fx:id="labelDmg" text="Total Damage Done: ">
                <font>
                   <Font name="Stencil" size="26.0" />
                </font>
             </Label>
-            <Label text="Total Monsters Killed: ">
+            <Label fx:id="labelMonsters" text="Total Monsters Killed: ">
                <font>
                   <Font name="Stencil" size="26.0" />
                </font>
