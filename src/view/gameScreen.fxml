@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <VBox alignment="CENTER" prefHeight="72.0" prefWidth="600.0" style="-fx-background-color: #000000;" BorderPane.alignment="TOP_CENTER">
+         <children>
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.7" prefHeight="72.0" prefWidth="128.0" text="Up">
+               <font>
+                  <Font name="Stencil" size="30.0" />
+               </font></Button>
+         </children></VBox>
+   </top>
+   <left>
+      <VBox alignment="CENTER" prefHeight="128.0" prefWidth="72.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
+         <children>
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.7" prefHeight="128.0" prefWidth="72.0" text="L">
+               <font>
+                  <Font name="Stencil" size="30.0" />
+               </font></Button>
+         </children></VBox>
+   </left>
+   <right>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="72.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
+         <children>
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.7" prefHeight="128.0" prefWidth="72.0" text="R">
+               <font>
+                  <Font name="Stencil" size="30.0" />
+               </font></Button>
+         </children></VBox>
+   </right>
+   <bottom>
+      <VBox alignment="CENTER" prefHeight="72.0" prefWidth="100.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
+         <children>
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.7" prefHeight="72.0" prefWidth="128.0" text="Down">
+               <font>
+                  <Font name="Stencil" size="30.0" />
+               </font></Button>
+         </children></VBox>
+   </bottom>
+   <center>
+      <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="576.0" fitWidth="1136.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../dungeonTest.jpg" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" style="-fx-background-color: #ffffff; -fx-opacity: .7;" text="Weapon: Knife" textAlignment="CENTER" StackPane.alignment="TOP_LEFT">
+               <font>
+                  <Font name="Stencil" size="32.0" />
+               </font></Label>
+            <Label layoutX="10.0" layoutY="10.0" prefWidth="128.0" style="-fx-background-color: #ffffff; -fx-opacity: .7;" text="Room: ?" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+               <font>
+                  <Font name="Stencil" size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="525.0" layoutY="10.0" style="-fx-background-color: #ffffff; -fx-opacity: .7;" text="Money: 10" textAlignment="CENTER" StackPane.alignment="TOP_RIGHT">
+               <font>
+                  <Font name="Stencil" size="32.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="128.0" text="Inventory" StackPane.alignment="BOTTOM_CENTER">
+               <font>
+                  <Font name="Stencil" size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="514.0" layoutY="536.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="128.0" text="Retreat" StackPane.alignment="BOTTOM_LEFT">
+               <font>
+                  <Font name="Stencil" size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="514.0" layoutY="273.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="128.0" text="Attack" StackPane.alignment="BOTTOM_RIGHT">
+               <font>
+                  <Font name="Stencil" size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="1018.0" layoutY="536.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Confirm the Kill">
+               <font>
+                  <Font name="Stencil" size="18.0" />
+               </font>
+            </Button>
+            <Label contentDisplay="BOTTOM" style="-fx-background-color: rgba(255, 255, 255, 0.5);" text="HP: 100" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">
+               <font>
+                  <Font name="Stencil" size="22.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="250.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../dungeonexplorer.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <StackPane.margin>
+                  <Insets left="20.0" />
+               </StackPane.margin>
+            </Label>
+            <Label contentDisplay="BOTTOM" layoutX="30.0" layoutY="166.0" style="-fx-background-color: rgba(255, 255, 255, 0.5);" text="You are fighting a Goblin CommanderHP: 20" textAlignment="CENTER" StackPane.alignment="CENTER_RIGHT">
+               <font>
+                  <Font name="Stencil" size="22.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets right="20.0" />
+               </StackPane.margin>
+            </Label>
+         </children>
+      </StackPane>
+   </center>
+</BorderPane>
