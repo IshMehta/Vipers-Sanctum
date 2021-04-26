@@ -69,7 +69,7 @@ public class ControllerT extends Application {
         roomsAccessed = new boolean[9];
         monstersDefeated = new boolean[9];
         lastRoom = null;
-        player = new Player(50, null);
+        player = new Player(50);
         player.addElement("Knife");
         player.addElement("Maul");
         player.addElement("Sword");

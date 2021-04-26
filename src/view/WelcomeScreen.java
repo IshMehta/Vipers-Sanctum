@@ -28,7 +28,6 @@ public class WelcomeScreen {
         VBox vbox = new VBox(label, buttons);
         vbox.getStyleClass().add("vbox");
         Scene scene = new Scene(vbox, width, height);
-        scene.getStylesheets().add("file:resources/css/WelcomeScreen.css");
         return scene;
     }
 

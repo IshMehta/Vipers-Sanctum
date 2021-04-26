@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConfigurationScreenController">
+   <top>
+      <Label alignment="CENTER" opacity="0.5" prefWidth="1280.0" style="-fx-background-color: #ffffff;" text="Configure Your Game" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Stencil" size="72.0" />
+         </font>
+      </Label>
+   </top>
+   <bottom>
+      <Button mnemonicParsing="false" onAction="#goToGame" opacity="0.5" text="Next" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Stencil" size="40.0" />
+         </font>
+      </Button>
+   </bottom>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+               <children>
+                  <TextField fx:id="nameTextField" prefWidth="400.0" promptText="Enter Name of Player">
+                     <font>
+                        <Font name="Stencil" size="30.0" />
+                     </font>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#checkName" opacity="0.5" text="Submit Name">
+                     <font>
+                        <Font name="Stencil" size="30.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+               <children>
+                  <Label opacity="0.5" style="-fx-background-color: #ffffff;" text="Choose Your Dificulty">
+                     <font>
+                        <Font name="Stencil" size="30.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="easyButton" mnemonicParsing="false" opacity="0.5" style="-fx-background-color: #ffffff;" text="Easy">
+                     <font>
+                        <Font name="Stencil" size="24.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="mediumButton" layoutX="806.0" layoutY="52.0" mnemonicParsing="false" opacity="0.5" style="-fx-background-color: #ffffff;" text="Medium">
+                     <font>
+                        <Font name="Stencil" size="24.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="hardButton" layoutX="828.0" layoutY="52.0" mnemonicParsing="false" opacity="0.5" style="-fx-background-color: #ffffff;" text="Hard">
+                     <font>
+                        <Font name="Stencil" size="24.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+               <children>
+                  <Label opacity="0.5" style="-fx-background-color: #ffffff;" text="Choose Your Weapon">
+                     <font>
+                        <Font name="Stencil" size="30.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="knifeButton" mnemonicParsing="false" opacity="0.5" style="-fx-background-color: #ffffff;" text="Knife">
+                     <font>
+                        <Font name="Stencil" size="24.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="maulButton" layoutX="763.0" layoutY="44.0" mnemonicParsing="false" opacity="0.5" style="-fx-background-color: #ffffff;" text="Maul">
+                     <font>
+                        <Font name="Stencil" size="24.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="swordButton" layoutX="813.0" layoutY="44.0" mnemonicParsing="false" opacity="0.5" style="-fx-background-color: #ffffff;" text="Sword">
+                     <font>
+                        <Font name="Stencil" size="24.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="bowButton" layoutX="862.0" layoutY="44.0" mnemonicParsing="false" opacity="0.5" style="-fx-background-color: #ffffff;" text="Bow">
+                     <font>
+                        <Font name="Stencil" size="24.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

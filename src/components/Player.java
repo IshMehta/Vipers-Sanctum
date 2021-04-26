@@ -4,14 +4,22 @@ import java.util.ArrayList;
 
 public class Player {
     private int playerHP;
+    private String playerName;
+    private String playerDifficulty;
+
+    private boolean attackOn;
+    private boolean luckyOn;
+
+    private int playerX;
+    private int playerY;
+
     //knife count, maul count, sword count, bow count,
     //attack pot count, health pot count, lucky pot count
     private ArrayList<Integer> inventoryCount;
     private String selectedWeapon;
 
-    public Player(int hp, String weapon) {
+    public Player(int hp) {
         playerHP = hp;
-        selectedWeapon = weapon;
         inventoryCount = new ArrayList<>(0);
         inventoryCount.add(0);
         inventoryCount.add(0);
@@ -96,5 +104,53 @@ public class Player {
 
     public void setSelectedWeapon(String selectedWeapon) {
         this.selectedWeapon = selectedWeapon;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public String getPlayerDifficulty() {
+        return playerDifficulty;
+    }
+
+    public void setPlayerDifficulty(String playerDifficulty) {
+        this.playerDifficulty = playerDifficulty;
+    }
+
+    public int getPlayerX() {
+        return playerX;
+    }
+
+    public void setPlayerX(int playerX) {
+        this.playerX = playerX;
+    }
+
+    public int getPlayerY() {
+        return playerY;
+    }
+
+    public void setPlayerY(int playerY) {
+        this.playerY = playerY;
+    }
+
+    public void setAttackOn(boolean attackOn) {
+        this.attackOn = attackOn;
+    }
+
+    public void setLuckyOn(boolean luckyOn) {
+        this.luckyOn = luckyOn;
+    }
+
+    public boolean isAttackOn() {
+        return attackOn;
+    }
+
+    public boolean isLuckyOn() {
+        return luckyOn;
     }
 }

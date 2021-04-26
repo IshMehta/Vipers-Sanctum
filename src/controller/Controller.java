@@ -57,7 +57,7 @@ public class Controller extends Application {
         roomsAccessed = new boolean[9];
         monstersDefeated = new boolean[9];
         lastRoom = null;
-        player = new Player(100, null);
+        player = new Player(100);
     }
 
     private void goToConfigScreen() {
