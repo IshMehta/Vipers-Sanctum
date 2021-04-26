@@ -76,7 +76,7 @@ public class GameScreenController implements Initializable {
     }
 
     private void setButtons() {
-        if (this.monster != null) {
+        if (this.monster != null && this.monster.getMonsterHP() > 0) {
             this.buttonLeft.setVisible(false);
             this.buttonRight.setVisible(false);
             this.buttonUp.setVisible(false);
@@ -103,6 +103,7 @@ public class GameScreenController implements Initializable {
 
     private void setPlayer() {
         this.playerLabel.setText("HP: " + this.player.getPlayerHP());
+        checkHP();
     }
 
     private void setMonster() {
@@ -149,6 +150,7 @@ public class GameScreenController implements Initializable {
                 monsterLabel.setGraphic(null);
                 break;
         }
+        checkHP();
     }
 
     private void setAnimations(boolean trans1, boolean trans2) {
@@ -263,65 +265,73 @@ public class GameScreenController implements Initializable {
         attackindex++;
         setPlayer();
         setMonster();
-        checkHP();
         //cleanup
     }
 
     private void checkHP() {
-        if (this.monster.getMonsterHP() <= 0) {
+        if (this.monster == null) {
+            buttonAttack.setVisible(false);
+            buttonRetreat.setVisible(false);
+            buttonUp.setVisible(true);
+            buttonDown.setVisible(true);
+            buttonRight.setVisible(true);
+            buttonLeft.setVisible(true);
+            buttonConfirmKill.setVisible(true);
+            monsterLabel.setVisible(false);
+        } else if(this.monster.getMonsterHP() <= 0) {
             switch (this.monster.getMonsterName()) {
-                case "Goblin":
-                    int random = (int) (Math.random() * 6);
-                    if (random == 0) {
-                        pickUpAttack.setVisible(true);
-                        pickUpAttack.setOnAction(e -> {
-                            player.addElement("Attack");
-                            pickUpAttack.setVisible(false);
-                        });
-                    } else if (random == 1) {
-                        pickUpHealth.setVisible(true);
-                        pickUpHealth.setOnAction(e -> {
-                            player.addElement("Health");
-                            pickUpHealth.setVisible(false);
-                        });
-                    } else if (random == 2) {
-                        pickUpLucky.setVisible(true);
-                        pickUpLucky.setOnAction(e -> {
-                            player.addElement("Lucky");
-                            pickUpLucky.setVisible(false);
-                        });
-                    }
-                    break;
-                case "Goblin Commander":
-                    random = (int) (Math.random() * 10);
-                    if (random == 0) {
-                        pickUpKnife.setVisible(true);
-                        pickUpKnife.setOnAction(e -> {
-                            player.addElement("Knife");
-                            pickUpKnife.setVisible(false);
-                        });
-                    } else if (random == 1) {
-                        pickUpMaul.setVisible(true);
-                        pickUpMaul.setOnAction(e -> {
-                            player.addElement("Maul");
-                            pickUpMaul.setVisible(false);
-                        });
-                    } else if (random == 2) {
-                        pickUpSword.setVisible(true);
-                        pickUpSword.setOnAction(e -> {
-                            player.addElement("Sword");
-                            pickUpSword.setVisible(false);
-                        });
-                    } else if (random == 3) {
-                        pickUpBow.setVisible(true);
-                        pickUpBow.setOnAction(e -> {
-                            player.addElement("Bow");
-                            pickUpBow.setVisible(false);
-                        });
-                    }
-                    break;
-                default:
-                    break;
+            case "Goblin":
+                int random = (int) (Math.random() * 6);
+                if (random == 0) {
+                    pickUpAttack.setVisible(true);
+                    pickUpAttack.setOnAction(e -> {
+                        player.addElement("Attack");
+                        pickUpAttack.setVisible(false);
+                    });
+                } else if (random == 1) {
+                    pickUpHealth.setVisible(true);
+                    pickUpHealth.setOnAction(e -> {
+                        player.addElement("Health");
+                        pickUpHealth.setVisible(false);
+                    });
+                } else if (random == 2) {
+                    pickUpLucky.setVisible(true);
+                    pickUpLucky.setOnAction(e -> {
+                        player.addElement("Lucky");
+                        pickUpLucky.setVisible(false);
+                    });
+                }
+                break;
+            case "Goblin Commander":
+                random = (int) (Math.random() * 10);
+                if (random == 0) {
+                    pickUpKnife.setVisible(true);
+                    pickUpKnife.setOnAction(e -> {
+                        player.addElement("Knife");
+                        pickUpKnife.setVisible(false);
+                    });
+                } else if (random == 1) {
+                    pickUpMaul.setVisible(true);
+                    pickUpMaul.setOnAction(e -> {
+                        player.addElement("Maul");
+                        pickUpMaul.setVisible(false);
+                    });
+                } else if (random == 2) {
+                    pickUpSword.setVisible(true);
+                    pickUpSword.setOnAction(e -> {
+                        player.addElement("Sword");
+                        pickUpSword.setVisible(false);
+                    });
+                } else if (random == 3) {
+                    pickUpBow.setVisible(true);
+                    pickUpBow.setOnAction(e -> {
+                        player.addElement("Bow");
+                        pickUpBow.setVisible(false);
+                    });
+                }
+                break;
+            default:
+                break;
             }
             buttonAttack.setVisible(false);
             buttonRetreat.setVisible(false);
@@ -466,6 +476,8 @@ public class GameScreenController implements Initializable {
 
         //access the controller and call a method
         GameScreenController controller = loader.getController();
+        this.player.setLuckyOn(false);
+        this.player.setAttackOn(false);
         controller.initData(this.player, this.dungeon, new Monster(this.roomsArray[player.getPlayerX()][player.getPlayerY()]));
 
         //This line gets the Stage information
