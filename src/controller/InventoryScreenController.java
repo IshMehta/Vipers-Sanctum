@@ -60,19 +60,27 @@ public class InventoryScreenController implements Initializable {
     }
 
     public void selectKnife(ActionEvent actionEvent) {
-        this.player.setSelectedWeapon("Knife");
+        if (player.getInventoryCount().get(0) > 0) {
+            this.player.setSelectedWeapon("Knife");
+        }
     }
 
     public void selectMaul(ActionEvent actionEvent) {
-        this.player.setSelectedWeapon("Maul");
+        if (player.getInventoryCount().get(1) > 0) {
+            this.player.setSelectedWeapon("Maul");
+        }
     }
 
     public void selectSword(ActionEvent actionEvent) {
-        this.player.setSelectedWeapon("Sword");
+        if (player.getInventoryCount().get(2) > 0) {
+            this.player.setSelectedWeapon("Sword");
+        }
     }
 
     public void selectBow(ActionEvent actionEvent) {
-        this.player.setSelectedWeapon("Bow");
+        if (player.getInventoryCount().get(3) > 0) {
+            this.player.setSelectedWeapon("Bow");
+        }
     }
 
     public void useAttack(ActionEvent actionEvent) {
