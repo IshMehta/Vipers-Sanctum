@@ -56,5 +56,50 @@ public class Milestone6Tests extends ApplicationTest {
         clickOn("#easyButton");
         clickOn("#knifeButton");
         clickOn("Next");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        FxAssert.verifyThat("#roomNoLabel", LabeledMatchers.hasText("Room: Challenge"));
+        clickOn("Decline?");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Up");
+        clickOn("Attack");
+        FxAssert.verifyThat("#roomNoLabel", LabeledMatchers.hasText("Room: Challenge"));
+        clickOn("Decline?");
+        clickOn("Up");
+        FxAssert.verifyThat("#roomNoLabel", LabeledMatchers.hasText("Room: 9"));
+    }
+
+    @Test
+    @Order(2)
+    public void checkIfEmpty() {
+        clickOn("Play");
+        clickOn("#nameTextField");
+        write("GG");
+        clickOn("Submit Name");
+        clickOn("#easyButton");
+        clickOn("#knifeButton");
+        clickOn("Next");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isInvisible());
+        FxAssert.verifyThat("#playerLabel", NodeMatchers.isInvisible());
+        FxAssert.verifyThat("#roomNoLabel", LabeledMatchers.hasText("Room: Challenge"));
     }
 }
