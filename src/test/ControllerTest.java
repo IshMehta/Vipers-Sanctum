@@ -1,4 +1,3 @@
-import controller.Controller;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;

@@ -1,5 +1,4 @@
 import components.Player;
-import controller.ControllerT;
 import javafx.stage.Stage;
 
 import org.junit.jupiter.api.BeforeAll;
