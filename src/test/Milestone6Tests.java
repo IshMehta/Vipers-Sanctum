@@ -1,5 +1,4 @@
-import components.Player;
-import controller.DungeonApp;
+import controller.DungeonAppT;
 import javafx.stage.Stage;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -35,13 +34,13 @@ public class Milestone6Tests extends ApplicationTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        setupApplication(DungeonApp.class);
+        setupApplication(DungeonAppT.class);
     }
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        DungeonApp dungeonApplication = new DungeonApp();
+        DungeonAppT dungeonApplication = new DungeonAppT();
         dungeonApplication.start(primaryStage);
     }
 

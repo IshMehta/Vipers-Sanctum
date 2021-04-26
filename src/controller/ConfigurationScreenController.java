@@ -34,6 +34,7 @@ public class ConfigurationScreenController implements Initializable {
     private boolean nameSelected;
     private Player player;
     private Dungeon dungeon;
+    private int testMode;
 
     public void goToGame(ActionEvent actionEvent) throws IOException {
         if (!nameSelected || chooseWeapon.getSelectedToggle() == null || chooseDifficulty.getSelectedToggle() == null) {
@@ -52,6 +53,9 @@ public class ConfigurationScreenController implements Initializable {
             Parent gameScreenParent = loader.load();
             Scene gameScreenScene = new Scene(gameScreenParent);
 
+            if (testMode == 1) {
+                dungeon.unRandomizeRooms();
+            }
             //access the controller and call a method
             GameScreenController controller = loader.getController();
             controller.initData(player, dungeon, null);
@@ -95,5 +99,9 @@ public class ConfigurationScreenController implements Initializable {
         player.setPlayerY(2);
         dungeon = new Dungeon();
         nameSelected = false;
+    }
+
+    public void initData(int testMode) {
+        this.testMode = testMode;
     }
 }

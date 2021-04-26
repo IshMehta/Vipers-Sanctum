@@ -14,12 +14,16 @@ import java.util.ResourceBundle;
 
 public class WelcomeScreenController implements Initializable {
     private Stage mainWindow;
+    private int testMode;
 
     public void goToConfig(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../resources/configurationScreen.fxml"));
         Parent configurationScreenParent = loader.load();
         Scene configurationScreenScene = new Scene(configurationScreenParent);
+
+        ConfigurationScreenController controller = loader.getController();
+        controller.initData(testMode);
 
         //This line gets the Stage information
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -35,5 +39,9 @@ public class WelcomeScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    public void initData(int i) {
+        this.testMode = i;
     }
 }

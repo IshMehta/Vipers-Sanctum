@@ -67,4 +67,18 @@ public class Dungeon {
     public void setLastDirection(String lastDirection) {
         this.lastDirection = lastDirection;
     }
+
+    public void unRandomizeRooms() {
+        this.roomsArray = new int[5][5];
+        roomsArray[0][2] = 1;
+        roomsArray[0][3] = 2;
+        roomsArray[0][4] = 3;
+        roomsArray[1][4] = 4;
+        roomsArray[2][4] = 5;
+        roomsArray[3][4] = 6;
+        roomsArray[4][4] = 7;
+        roomsArray[4][3] = 8;
+        roomsArray[4][2] = 9;
+        System.out.println(Arrays.deepToString(roomsArray));
+    }
 }
