@@ -6,6 +6,7 @@ public class Dungeon {
     private int[][] roomsArray;
     private boolean[] roomsAccessed;
     private boolean[] monstersDefeated;
+    private String lastDirection;
 
     public Dungeon() {
         roomsArray = new int[5][5];
@@ -57,5 +58,13 @@ public class Dungeon {
 
     public boolean[] getMonstersDefeated() {
         return monstersDefeated;
+    }
+
+    public String getLastDirection() {
+        return lastDirection;
+    }
+
+    public void setLastDirection(String lastDirection) {
+        this.lastDirection = lastDirection;
     }
 }

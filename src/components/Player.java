@@ -13,12 +13,19 @@ public class Player {
     private int playerX;
     private int playerY;
 
+    private long startPlayerTime;
+    private int totalDmgDealt;
+    private int totalMonstersKilled;
+
     //knife count, maul count, sword count, bow count,
     //attack pot count, health pot count, lucky pot count
     private ArrayList<Integer> inventoryCount;
     private String selectedWeapon;
 
     public Player(int hp) {
+        startPlayerTime = System.currentTimeMillis();
+        totalDmgDealt = 0;
+        totalMonstersKilled = 0;
         playerHP = hp;
         inventoryCount = new ArrayList<>(0);
         inventoryCount.add(0);
@@ -152,5 +159,29 @@ public class Player {
 
     public boolean isLuckyOn() {
         return luckyOn;
+    }
+
+    public long getStartPlayerTime() {
+        return startPlayerTime;
+    }
+
+    public void setStartPlayerTime(long startPlayerTime) {
+        this.startPlayerTime = startPlayerTime;
+    }
+
+    public int getTotalDmgDealt() {
+        return totalDmgDealt;
+    }
+
+    public void setTotalDmgDealt(int totalDmgDealt) {
+        this.totalDmgDealt = totalDmgDealt;
+    }
+
+    public int getTotalMonstersKilled() {
+        return totalMonstersKilled;
+    }
+
+    public void setTotalMonstersKilled(int totalMonstersKilled) {
+        this.totalMonstersKilled = totalMonstersKilled;
     }
 }
