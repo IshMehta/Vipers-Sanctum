@@ -148,4 +148,81 @@ public class Milestone6Tests extends ApplicationTest {
         clickOn("L");
     }
 
+    //Diptendu Test
+    @Test
+    @Order(5)
+    public void testEndGameScreen() {
+        clickOn("Play");
+        clickOn("#nameTextField");
+        write("GG");
+        clickOn("Submit Name");
+        clickOn("#easyButton");
+        clickOn("#knifeButton");
+        clickOn("Next");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Decline?");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Decline?");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Quit");
+    }
+
+    @Test
+    @Order(6)
+    public void checkEGScreen() {
+        clickOn("Play");
+        clickOn("#nameTextField");
+        write("GG");
+        clickOn("Submit Name");
+        clickOn("#easyButton");
+        clickOn("#knifeButton");
+        clickOn("Next");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Decline?");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Decline?");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Restart");
+    }
+
 }
