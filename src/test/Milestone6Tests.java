@@ -102,4 +102,50 @@ public class Milestone6Tests extends ApplicationTest {
         FxAssert.verifyThat("#playerLabel", NodeMatchers.isInvisible());
         FxAssert.verifyThat("#roomNoLabel", LabeledMatchers.hasText("Room: Challenge"));
     }
+
+    //Su Test
+    @Test
+    @Order(3)
+    public void checkDeclineChallenge() {
+        clickOn("Play");
+        clickOn("#nameTextField");
+        write("Su");
+        clickOn("Submit Name");
+        clickOn("#easyButton");
+        clickOn("#knifeButton");
+        clickOn("Next");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        FxAssert.verifyThat("#roomNoLabel", LabeledMatchers.hasText("Room: Challenge"));
+        clickOn("Decline?");
+        clickOn("R");
+    }
+
+    @Test
+    @Order(4)
+    public void testChallengeRoomExits() {
+        clickOn("Play");
+        clickOn("#nameTextField");
+        write("Su");
+        clickOn("Submit Name");
+        clickOn("#easyButton");
+        clickOn("#knifeButton");
+        clickOn("Next");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        FxAssert.verifyThat("#roomNoLabel", LabeledMatchers.hasText("Room: Challenge"));
+        clickOn("Accept?");
+        clickOn("L");
+    }
+
 }
