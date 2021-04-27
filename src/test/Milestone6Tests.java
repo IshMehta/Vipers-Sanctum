@@ -145,7 +145,7 @@ public class Milestone6Tests extends ApplicationTest {
         clickOn("Attack");
         FxAssert.verifyThat("#roomNoLabel", LabeledMatchers.hasText("Room: Challenge"));
         clickOn("Accept?");
-        clickOn("L");
+        FxAssert.verifyThat("Up", NodeMatchers.isNull());
     }
 
     //Diptendu Test
@@ -256,12 +256,12 @@ public class Milestone6Tests extends ApplicationTest {
         clickOn("Attack");
         clickOn("Decline?");
         clickOn("Up");
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
         clickOn("Attack");
         clickOn("Attack");
         clickOn("Attack");
         clickOn("Attack");
         clickOn("R");
-        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
     }
 
     @Test
@@ -291,6 +291,7 @@ public class Milestone6Tests extends ApplicationTest {
 
     // Ish Test
     @Test
+    @Order(9)
     public void testEnding() {
         clickOn("Play");
         clickOn("#nameTextField");
@@ -329,6 +330,7 @@ public class Milestone6Tests extends ApplicationTest {
     }
 
     @Test
+    @Order(10)
     public void testStatistics() {
         clickOn("Play");
         clickOn("#nameTextField");
@@ -369,6 +371,7 @@ public class Milestone6Tests extends ApplicationTest {
     }
 
     @Test
+    @Order(11)
     public void testBoss() {
         clickOn("Play");
         clickOn("#nameTextField");
