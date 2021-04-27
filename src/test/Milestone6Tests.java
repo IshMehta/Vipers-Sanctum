@@ -102,7 +102,7 @@ public class Milestone6Tests extends ApplicationTest {
         FxAssert.verifyThat("#playerLabel", NodeMatchers.isInvisible());
         FxAssert.verifyThat("#roomNoLabel", LabeledMatchers.hasText("Room: Challenge"));
     }
-    
+
     //Su Test
     @Test
     @Order(3)
@@ -145,10 +145,7 @@ public class Milestone6Tests extends ApplicationTest {
         clickOn("Attack");
         FxAssert.verifyThat("#roomNoLabel", LabeledMatchers.hasText("Room: Challenge"));
         clickOn("Accept?");
-        FxAssert.verifyThat("Up", NodeMatchers.isNull());
-        FxAssert.verifyThat("Down", NodeMatchers.isNull());
-        FxAssert.verifyThat("R", NodeMatchers.isNull());
-        FxAssert.verifyThat("L", NodeMatchers.isNull());
+        clickOn("L");
     }
 
     //Diptendu Test
@@ -227,7 +224,7 @@ public class Milestone6Tests extends ApplicationTest {
         clickOn("R");
         clickOn("Restart");
     }
-    
+
     //Asha Test
     @Test
     @Order(7)
@@ -259,13 +256,12 @@ public class Milestone6Tests extends ApplicationTest {
         clickOn("Attack");
         clickOn("Decline?");
         clickOn("Up");
-        FxAssert.verifyThat("#monsterLabel", LabeledMatchers.hasText("You are fighting the Viper\nHP: 20"));
         clickOn("Attack");
         clickOn("Attack");
         clickOn("Attack");
         clickOn("Attack");
         clickOn("R");
-
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
     }
 
     @Test
@@ -291,6 +287,123 @@ public class Milestone6Tests extends ApplicationTest {
         FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
         FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
 
+    }
+
+    // Ish Test
+    @Test
+    public void testEnding() {
+        clickOn("Play");
+        clickOn("#nameTextField");
+        write("GG");
+        clickOn("Submit Name");
+        clickOn("#easyButton");
+        clickOn("#knifeButton");
+        clickOn("Next");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Decline?");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Decline?");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        FxAssert.verifyThat("#endGameTitle", NodeMatchers.isVisible());
+        clickOn("Quit");
+    }
+
+    @Test
+    public void testStatistics() {
+        clickOn("Play");
+        clickOn("#nameTextField");
+        write("GG");
+        clickOn("Submit Name");
+        clickOn("#easyButton");
+        clickOn("#knifeButton");
+        clickOn("Next");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Decline?");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Decline?");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        FxAssert.verifyThat("#labelTime", NodeMatchers.isVisible());
+        FxAssert.verifyThat("#labelDmg", NodeMatchers.isVisible());
+        FxAssert.verifyThat("#labelMonsters", NodeMatchers.isVisible());
+        clickOn("Quit");
+    }
+
+    @Test
+    public void testBoss() {
+        clickOn("Play");
+        clickOn("#nameTextField");
+        write("GG");
+        clickOn("Submit Name");
+        clickOn("#easyButton");
+        clickOn("#knifeButton");
+        clickOn("Next");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Decline?");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Decline?");
+        clickOn("Up");
+        FxAssert.verifyThat("#monsterLabel", LabeledMatchers.hasText("You are fighting the Viper" + "\nHP: 20"));
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Quit");
     }
 
 }
