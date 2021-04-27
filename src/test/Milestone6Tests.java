@@ -397,7 +397,8 @@ public class Milestone6Tests extends ApplicationTest {
         clickOn("Attack");
         clickOn("Decline?");
         clickOn("Up");
-        FxAssert.verifyThat("#monsterLabel", LabeledMatchers.hasText("You are fighting the Viper" + "\nHP: 20"));
+        FxAssert.verifyThat("#monsterLabel",
+                LabeledMatchers.hasText("You are fighting the Viper" + "\nHP: 20"));
         clickOn("Attack");
         clickOn("Attack");
         clickOn("Attack");
