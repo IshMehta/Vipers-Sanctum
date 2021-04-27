@@ -32,7 +32,8 @@ public class EndGameController {
             endGameTitle.setText("YOU LOST!");
         }
         this.player = player;
-        elapsedTime = (int) ((System.currentTimeMillis() - this.player.getStartPlayerTime()) / 1000);
+        elapsedTime = (int) ((System.currentTimeMillis()
+                - this.player.getStartPlayerTime()) / 1000);
         labelTime.setText(labelTime.getText() + elapsedTime + " seconds");
         labelDmg.setText(labelDmg.getText() + this.player.getTotalDmgDealt());
         labelMonsters.setText(labelMonsters.getText() + this.player.getTotalMonstersKilled());
@@ -45,13 +46,13 @@ public class EndGameController {
         Scene welcomeScreenScene = new Scene(welcomeScreenParent);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(welcomeScreenScene);
         window.show();
     }
 
     public void exitApplication(ActionEvent actionEvent) {
-        mainWindow = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        mainWindow = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         mainWindow.close();
     }
 }

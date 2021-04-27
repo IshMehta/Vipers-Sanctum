@@ -26,13 +26,13 @@ public class WelcomeScreenController implements Initializable {
         controller.initData(testMode);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(configurationScreenScene);
         window.show();
     }
 
     public void quitGame(ActionEvent actionEvent) {
-        mainWindow = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        mainWindow = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         mainWindow.close();
     }
 

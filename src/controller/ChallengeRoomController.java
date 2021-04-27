@@ -107,17 +107,17 @@ public class ChallengeRoomController {
             break;
         }
         switch (this.currMonster.getMonsterName()) {
-            case "Goblin":
-                player.setPlayerHP(player.getPlayerHP() - 3);
-                break;
-            case "Goblin Commander":
-                player.setPlayerHP(player.getPlayerHP() - 6);
-                break;
-            case "Viper":
-                player.setPlayerHP(player.getPlayerHP() - 10);
-                break;
-            default:
-                break;
+        case "Goblin":
+            player.setPlayerHP(player.getPlayerHP() - 3);
+            break;
+        case "Goblin Commander":
+            player.setPlayerHP(player.getPlayerHP() - 6);
+            break;
+        case "Viper":
+            player.setPlayerHP(player.getPlayerHP() - 10);
+            break;
+        default:
+            break;
         }
         attackindex++;
         setPlayer();

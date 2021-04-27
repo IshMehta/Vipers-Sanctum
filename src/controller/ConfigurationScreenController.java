@@ -37,16 +37,18 @@ public class ConfigurationScreenController implements Initializable {
     private int testMode;
 
     public void goToGame(ActionEvent actionEvent) throws IOException {
-        if (!nameSelected || chooseWeapon.getSelectedToggle() == null || chooseDifficulty.getSelectedToggle() == null) {
+        if (!nameSelected || chooseWeapon.getSelectedToggle() == null
+                || chooseDifficulty.getSelectedToggle() == null) {
             Alert nameNotSelected = new Alert(Alert.AlertType.WARNING);
             nameNotSelected.setContentText("One of the fields has not been selected");
             nameNotSelected.setHeaderText("Invalid configuration has not been selected!");
             nameNotSelected.setTitle("Invalid Configuration");
             nameNotSelected.show();
         } else {
-            player.addElement(((RadioButton)chooseWeapon.getSelectedToggle()).getText());
-            player.setSelectedWeapon(((RadioButton)chooseWeapon.getSelectedToggle()).getText());
-            player.setPlayerDifficulty(((RadioButton)chooseDifficulty.getSelectedToggle()).getText());
+            player.addElement(((RadioButton) chooseWeapon.getSelectedToggle()).getText());
+            player.setSelectedWeapon(((RadioButton) chooseWeapon.getSelectedToggle()).getText());
+            player.setPlayerDifficulty(((RadioButton)
+                    chooseDifficulty.getSelectedToggle()).getText());
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../resources/gameScreen.fxml"));
@@ -61,7 +63,7 @@ public class ConfigurationScreenController implements Initializable {
             controller.initData(player, dungeon, null);
 
             //This line gets the Stage information
-            Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             window.setScene(gameScreenScene);
             window.show();
         }
@@ -71,7 +73,8 @@ public class ConfigurationScreenController implements Initializable {
         if (nameTextField.getText() == null || nameTextField.getText().isBlank()) {
             nameSelected = false;
             Alert invalidName = new Alert(Alert.AlertType.WARNING);
-            invalidName.setContentText("Name must not consist of only whitespaces and not be blank");
+            invalidName.setContentText("Name must not consist of only "
+                    + "whitespaces and not be blank");
             invalidName.setHeaderText("Player must have a name!");
             invalidName.setTitle("Invalid Name");
             invalidName.show();
