@@ -102,4 +102,191 @@ public class Milestone6Tests extends ApplicationTest {
         FxAssert.verifyThat("#playerLabel", NodeMatchers.isInvisible());
         FxAssert.verifyThat("#roomNoLabel", LabeledMatchers.hasText("Room: Challenge"));
     }
+
+    //Su Test
+    @Test
+    @Order(3)
+    public void checkDeclineChallenge() {
+        clickOn("Play");
+        clickOn("#nameTextField");
+        write("Su");
+        clickOn("Submit Name");
+        clickOn("#easyButton");
+        clickOn("#knifeButton");
+        clickOn("Next");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        FxAssert.verifyThat("#roomNoLabel", LabeledMatchers.hasText("Room: Challenge"));
+        clickOn("Decline?");
+        clickOn("R");
+    }
+
+    @Test
+    @Order(4)
+    public void testChallengeRoomExits() {
+        clickOn("Play");
+        clickOn("#nameTextField");
+        write("Su");
+        clickOn("Submit Name");
+        clickOn("#easyButton");
+        clickOn("#knifeButton");
+        clickOn("Next");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        FxAssert.verifyThat("#roomNoLabel", LabeledMatchers.hasText("Room: Challenge"));
+        clickOn("Accept?");
+        clickOn("L");
+    }
+
+    //Diptendu Test
+    @Test
+    @Order(5)
+    public void testEndGameScreen() {
+        clickOn("Play");
+        clickOn("#nameTextField");
+        write("GG");
+        clickOn("Submit Name");
+        clickOn("#easyButton");
+        clickOn("#knifeButton");
+        clickOn("Next");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Decline?");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Decline?");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Quit");
+    }
+
+    @Test
+    @Order(6)
+    public void checkEGScreen() {
+        clickOn("Play");
+        clickOn("#nameTextField");
+        write("GG");
+        clickOn("Submit Name");
+        clickOn("#easyButton");
+        clickOn("#knifeButton");
+        clickOn("Next");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Decline?");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Decline?");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Restart");
+    }
+    
+    //Asha Test
+    @Test
+    @Order(7)
+    public void containsBoss() {
+        clickOn("Play");
+        clickOn("#nameTextField");
+        write("Asha Redhead");
+        clickOn("Submit Name");
+        clickOn("#easyButton");
+        clickOn("#knifeButton");
+        clickOn("Next");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Decline?");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Decline?");
+        clickOn("Up");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
+    }
+
+    @Test
+    @Order(8)
+    public void testChallengeRoomMonsters() {
+        clickOn("Play");
+        clickOn("#nameTextField");
+        write("GG");
+        clickOn("Submit Name");
+        clickOn("#easyButton");
+        clickOn("#knifeButton");
+        clickOn("Next");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Down");
+        clickOn("Attack");
+        clickOn("Attack");
+        clickOn("R");
+        clickOn("Attack");
+        FxAssert.verifyThat("#roomNoLabel", LabeledMatchers.hasText("Room: Challenge"));
+        clickOn("Accept?");
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
+        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
+
+    }
+
 }
