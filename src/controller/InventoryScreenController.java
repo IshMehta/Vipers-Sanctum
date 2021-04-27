@@ -54,7 +54,7 @@ public class InventoryScreenController implements Initializable {
         controller.initData(this.player, this.dungeon, this.monster);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(gameScreenScene);
         window.show();
     }
@@ -95,7 +95,7 @@ public class InventoryScreenController implements Initializable {
         if (player.getInventoryCount().get(5) > 0) {
             this.player.removeElement("Health");
             this.buttonHealth.setText(String.valueOf(player.getInventoryCount().get(5)));
-            this.player.setPlayerHP(this.player.getPlayerHP()+10);
+            this.player.setPlayerHP(this.player.getPlayerHP() + 10);
         }
     }
 

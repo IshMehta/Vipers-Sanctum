@@ -111,7 +111,8 @@ public class GameScreenController implements Initializable {
             this.monsterLabel.setVisible(false);
             return;
         }
-        if (this.monstersDefeated[this.roomsArray[this.player.getPlayerX()][this.player.getPlayerY()] - 1]) {
+        if (this.monstersDefeated[this.roomsArray
+                [this.player.getPlayerX()][this.player.getPlayerY()] - 1]) {
             this.monster = null;
             this.monsterLabel.setVisible(false);
             return;
@@ -128,26 +129,26 @@ public class GameScreenController implements Initializable {
         ImageView viper = new ImageView(viperI);
         viper.setFitHeight(300);
         viper.setPreserveRatio(true);
-        switch(this.monster.getMonsterName()) {
-            case "Goblin":
-                monsterLabel.setText("You are fighting a " + this.monster.getMonsterName() + "\nHP: "
-                        + this.monster.getMonsterHP());
-                monsterLabel.setGraphic(goblin);
-                break;
-            case "Goblin Commander":
-                monsterLabel.setText("You are fighting a " + this.monster.getMonsterName() + "\nHP: "
-                        + this.monster.getMonsterHP());
-                monsterLabel.setGraphic(goblinCommander);
-                break;
-            case "Viper":
-                monsterLabel.setText("You are fighting the " + this.monster.getMonsterName() + "\nHP: "
-                        + this.monster.getMonsterHP());
-                monsterLabel.setGraphic(viper);
-                break;
-            default:
-                monsterLabel.setText("");
-                monsterLabel.setGraphic(null);
-                break;
+        switch (this.monster.getMonsterName()) {
+        case "Goblin":
+            monsterLabel.setText("You are fighting a " + this.monster.getMonsterName() + "\nHP: "
+                    + this.monster.getMonsterHP());
+            monsterLabel.setGraphic(goblin);
+            break;
+        case "Goblin Commander":
+            monsterLabel.setText("You are fighting a " + this.monster.getMonsterName() + "\nHP: "
+                    + this.monster.getMonsterHP());
+            monsterLabel.setGraphic(goblinCommander);
+            break;
+        case "Viper":
+            monsterLabel.setText("You are fighting the " + this.monster.getMonsterName() + "\nHP: "
+                    + this.monster.getMonsterHP());
+            monsterLabel.setGraphic(viper);
+            break;
+        default:
+            monsterLabel.setText("");
+            monsterLabel.setGraphic(null);
+            break;
         }
         checkHP();
     }
@@ -253,17 +254,17 @@ public class GameScreenController implements Initializable {
             break;
         }
         switch (this.monster.getMonsterName()) {
-            case "Goblin":
-                player.setPlayerHP(player.getPlayerHP() - 3);
-                break;
-            case "Goblin Commander":
-                player.setPlayerHP(player.getPlayerHP() - 6);
-                break;
-            case "Viper":
-                player.setPlayerHP(player.getPlayerHP() - 10);
-                break;
-            default:
-                break;
+        case "Goblin":
+            player.setPlayerHP(player.getPlayerHP() - 3);
+            break;
+        case "Goblin Commander":
+            player.setPlayerHP(player.getPlayerHP() - 6);
+            break;
+        case "Viper":
+            player.setPlayerHP(player.getPlayerHP() - 10);
+            break;
+        default:
+            break;
         }
         attackindex++;
         setPlayer();
@@ -281,7 +282,7 @@ public class GameScreenController implements Initializable {
             buttonLeft.setVisible(true);
             buttonConfirmKill.setVisible(true);
             monsterLabel.setVisible(false);
-        } else if(this.monster.getMonsterHP() <= 0) {
+        } else if (this.monster.getMonsterHP() <= 0) {
             switch (this.monster.getMonsterName()) {
             case "Goblin":
                 int random = (int) (Math.random() * 6);
@@ -353,9 +354,10 @@ public class GameScreenController implements Initializable {
                 buttonConfirmKill.setVisible(false);
                 buttonInventory.setVisible(false);
             }
-            if (roomsArray[player.getPlayerX()][player.getPlayerY()] == 4 ||
-                    roomsArray[player.getPlayerX()][player.getPlayerY()] == 8) {
-                this.monstersDefeated[this.roomsArray[this.player.getPlayerX()][this.player.getPlayerY()] - 1] = true;
+            if (roomsArray[player.getPlayerX()][player.getPlayerY()] == 4
+                    || roomsArray[player.getPlayerX()][player.getPlayerY()] == 8) {
+                this.monstersDefeated[this.roomsArray
+                        [this.player.getPlayerX()][this.player.getPlayerY()] - 1] = true;
                 this.buttonConfirmKill.setVisible(false);
                 goToChallenge();
             }
@@ -385,7 +387,7 @@ public class GameScreenController implements Initializable {
                 invalidRoom.show();
                 return;
             }
-            player.setPlayerY(player.getPlayerY()-1);
+            player.setPlayerY(player.getPlayerY() - 1);
             if (roomsArray[player.getPlayerX()][player.getPlayerY()] <= 1) {
                 break;
             } else if (roomsAccessed[roomsArray[player.getPlayerX()][player.getPlayerY()] - 2]) {
@@ -399,7 +401,7 @@ public class GameScreenController implements Initializable {
                 invalidRoom.setHeaderText("Choose a different exit");
                 invalidRoom.setTitle("Invalid Exit");
                 invalidRoom.show();
-                player.setPlayerY(player.getPlayerY()+1);
+                player.setPlayerY(player.getPlayerY() + 1);
                 return;
             }
             dungeon.setLastDirection("Down");
@@ -414,7 +416,7 @@ public class GameScreenController implements Initializable {
                 invalidRoom.show();
                 return;
             }
-            player.setPlayerY(player.getPlayerY()+1);
+            player.setPlayerY(player.getPlayerY() + 1);
             if (roomsArray[player.getPlayerX()][player.getPlayerY()] <= 1) {
                 break;
             } else if (roomsAccessed[roomsArray[player.getPlayerX()][player.getPlayerY()] - 2]) {
@@ -428,7 +430,7 @@ public class GameScreenController implements Initializable {
                 invalidRoom.setHeaderText("Choose a different exit");
                 invalidRoom.setTitle("Invalid Exit");
                 invalidRoom.show();
-                player.setPlayerY(player.getPlayerY()-1);
+                player.setPlayerY(player.getPlayerY() - 1);
                 return;
             }
             dungeon.setLastDirection("Up");
@@ -447,7 +449,7 @@ public class GameScreenController implements Initializable {
                 invalidRoom.show();
                 return;
             }
-            player.setPlayerX(player.getPlayerX()+1);
+            player.setPlayerX(player.getPlayerX() + 1);
             if (roomsArray[player.getPlayerX()][player.getPlayerY()] <= 1) {
                 break;
             } else if (roomsAccessed[roomsArray[player.getPlayerX()][player.getPlayerY()] - 2]) {
@@ -461,7 +463,7 @@ public class GameScreenController implements Initializable {
                 invalidRoom.setHeaderText("Choose a different exit");
                 invalidRoom.setTitle("Invalid Exit");
                 invalidRoom.show();
-                player.setPlayerY(player.getPlayerX()-1);
+                player.setPlayerY(player.getPlayerX() - 1);
                 return;
             }
             dungeon.setLastDirection("L");
@@ -476,7 +478,7 @@ public class GameScreenController implements Initializable {
                 invalidRoom.show();
                 return;
             }
-            player.setPlayerX(player.getPlayerX()-1);
+            player.setPlayerX(player.getPlayerX() - 1);
             if (roomsArray[player.getPlayerX()][player.getPlayerY()] <= 1) {
                 break;
             } else if (roomsAccessed[roomsArray[player.getPlayerX()][player.getPlayerY()] - 2]) {
@@ -490,7 +492,7 @@ public class GameScreenController implements Initializable {
                 invalidRoom.setHeaderText("Choose a different exit");
                 invalidRoom.setTitle("Invalid Exit");
                 invalidRoom.show();
-                player.setPlayerY(player.getPlayerX()+1);
+                player.setPlayerY(player.getPlayerX() + 1);
                 return;
             }
             dungeon.setLastDirection("R");
@@ -507,10 +509,11 @@ public class GameScreenController implements Initializable {
         GameScreenController controller = loader.getController();
         this.player.setLuckyOn(false);
         this.player.setAttackOn(false);
-        controller.initData(this.player, this.dungeon, new Monster(this.roomsArray[player.getPlayerX()][player.getPlayerY()]));
+        controller.initData(this.player, this.dungeon,
+                new Monster(this.roomsArray[player.getPlayerX()][player.getPlayerY()]));
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         if (window == null) {
             return;
         }
@@ -529,7 +532,7 @@ public class GameScreenController implements Initializable {
         controller.initData(this.player, this.dungeon, this.monster);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(inventoryScreenScene);
         window.show();
     }
@@ -592,7 +595,8 @@ public class GameScreenController implements Initializable {
     }
 
     public void confirmedButtonPressed(ActionEvent actionEvent) {
-        this.monstersDefeated[this.roomsArray[this.player.getPlayerX()][this.player.getPlayerY()] - 1] = true;
+        this.monstersDefeated[this.roomsArray
+                [this.player.getPlayerX()][this.player.getPlayerY()] - 1] = true;
         this.buttonConfirmKill.setVisible(false);
     }
 
