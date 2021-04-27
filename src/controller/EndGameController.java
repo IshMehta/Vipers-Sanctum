@@ -14,6 +14,7 @@ import java.io.IOException;
 
 public class EndGameController {
 
+    @FXML private Label labelName;
     @FXML private Label labelTime;
     @FXML private Label labelDmg;
     @FXML private Label labelMonsters;
@@ -34,6 +35,7 @@ public class EndGameController {
         this.player = player;
         elapsedTime = (int) ((System.currentTimeMillis()
                 - this.player.getStartPlayerTime()) / 1000);
+        labelName.setText(player.getPlayerName());
         labelTime.setText(labelTime.getText() + elapsedTime + " seconds");
         labelDmg.setText(labelDmg.getText() + this.player.getTotalDmgDealt());
         labelMonsters.setText(labelMonsters.getText() + this.player.getTotalMonstersKilled());

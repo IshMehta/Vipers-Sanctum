@@ -102,7 +102,7 @@ public class Milestone6Tests extends ApplicationTest {
         FxAssert.verifyThat("#playerLabel", NodeMatchers.isInvisible());
         FxAssert.verifyThat("#roomNoLabel", LabeledMatchers.hasText("Room: Challenge"));
     }
-
+    
     //Su Test
     @Test
     @Order(3)
@@ -145,7 +145,10 @@ public class Milestone6Tests extends ApplicationTest {
         clickOn("Attack");
         FxAssert.verifyThat("#roomNoLabel", LabeledMatchers.hasText("Room: Challenge"));
         clickOn("Accept?");
-        clickOn("L");
+        FxAssert.verifyThat("Up", NodeMatchers.isNull());
+        FxAssert.verifyThat("Down", NodeMatchers.isNull());
+        FxAssert.verifyThat("R", NodeMatchers.isNull());
+        FxAssert.verifyThat("L", NodeMatchers.isNull());
     }
 
     //Diptendu Test
@@ -256,12 +259,13 @@ public class Milestone6Tests extends ApplicationTest {
         clickOn("Attack");
         clickOn("Decline?");
         clickOn("Up");
+        FxAssert.verifyThat("#monsterLabel", LabeledMatchers.hasText("You are fighting the Viper\nHP: 20"));
         clickOn("Attack");
         clickOn("Attack");
         clickOn("Attack");
         clickOn("Attack");
         clickOn("R");
-        FxAssert.verifyThat("#monsterLabel", NodeMatchers.isVisible());
+
     }
 
     @Test

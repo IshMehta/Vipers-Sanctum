@@ -18,6 +18,11 @@
                   <Font name="Stencil" size="60.0" />
                </font>
             </Label>
+            <Label fx:id="labelName" layoutX="567.0" layoutY="99.0" text="Name">
+               <font>
+                  <Font name="Stencil" size="26.0" />
+               </font>
+            </Label>
             <Label fx:id="labelTime" text="Time Taken: ">
                <font>
                   <Font name="Stencil" size="26.0" />
